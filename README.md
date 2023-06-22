@@ -4,5 +4,5 @@
 
 ### Docker
 
-`docker-compose up` in root-dir.  
-*<span style="color:gray"> Use WSL when working with Windows </span>*
+`docker-compose up`  
+*<span style="color:lightgray"> Use WSL when working with Windows </span>*
