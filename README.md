@@ -1,7 +1,8 @@
 # ChatConnect
 
-## Docker
+## Development
 
-- Install Docker-Engine for your OS: https://docs.docker.com/engine/install/
-- Run Container in root-dir: `docker-compose up`
-- Open in Webbrowser: http://localhost:3000
+### Docker
+
+`docker-compose up` in root-dir.  
+*<span style="color:gray"> Use WSL when working with Windows </span>*
