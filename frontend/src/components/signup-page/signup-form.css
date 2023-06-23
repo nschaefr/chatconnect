@@ -84,7 +84,7 @@
 }
 
 .btn2 {
-  background-color: #6f6f7a;
+  background-color: rgb(90, 92, 106);
   width: fit-content;
   height: fit-content;
   justify-content: center;
@@ -94,7 +94,7 @@
 }
 
 .btn2:hover {
-  background-color: #5f5f68;
+  background-color: rgb(32, 45, 58);
 }
 
 .text2 {
