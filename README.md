@@ -4,5 +4,4 @@
 
 ### Docker
 
-`docker-compose up`  
-_<span style="color:#F5F5F5"> Use WSL when working with Windows </span>_
+`docker-compose up` *(Use WSL when working with Windows)*
