@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./assets/fonts/Inter-Medium.ttf";
+import "./assets/fonts/Inter-Regular.ttf";
+import "./assets/fonts/Inter-SemiBold.ttf";
 import "./index.css";
 import App from "./App";
 
