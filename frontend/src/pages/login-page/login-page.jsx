@@ -1,8 +1,8 @@
 import React from "react";
-import "../signup-page/signup-page.css";
+import "./login-page.css";
 import LoginForm from "../../components/login-page/login-form";
 
-function LogINPage() {
+function LoginPage() {
     return (
         <div className="page">
             <LoginForm />
@@ -10,4 +10,4 @@ function LogINPage() {
     );
 }
 
-export default LogINPage;
+export default LoginPage;
