@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./signup-form.css";
 
 function SignupForm() {
@@ -21,7 +22,9 @@ function SignupForm() {
       <div className="decision">
         <div>
           <p className="text">Already have an account?</p>
-          <p className="btn">Login now</p>
+          <Link to={`/`}>
+            <p className="btn">Login now</p>
+          </Link>
         </div>
         <div className="btn2">
           <p className="text2">Sign Up</p>

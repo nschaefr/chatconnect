@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./login-form.css";
 
 function LoginForm() {
@@ -14,7 +15,9 @@ function LoginForm() {
       <div className="decision">
         <div>
           <p className="text">You don't have an account?</p>
-          <p className="btn">Sign up now</p>
+          <Link to={`signup`}>
+            <p className="btn">Sign up now</p>
+          </Link>
         </div>
         <div className="btn2">
           <p className="text2">Log In</p>
