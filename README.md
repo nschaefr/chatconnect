@@ -4,4 +4,8 @@
 
 ### Docker
 
-`docker-compose up` *(Use WSL when working with Windows)*
+```sh
+docker-compose up --build
+``` 
+
+>*--build flag to rebuild image*
