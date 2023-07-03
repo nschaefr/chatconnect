@@ -8,6 +8,10 @@ import "./index.css";
 import LoginPage from "./pages/login-page/login-page";
 import ErrorPage from "./components/utils/route-error";
 import SignupPage from "./pages/signup-page/signup-page";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
   {
