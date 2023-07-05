@@ -10,18 +10,18 @@ import ErrorPage from "./components/utils/route-error";
 import SignupPage from "./pages/signup-page/signup-page";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4000";
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "http://localhost:4040/";
+axios.defaults.withCredentials = false;
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />,
-    errorElement: <ErrorPage />,
   },
   {
-    path: "signup",
+    path: "/signup",
     element: <SignupPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

@@ -15,7 +15,7 @@ function LoginForm() {
       <div className="decision">
         <div>
           <p className="text">You don't have an account?</p>
-          <Link to={`signup`}>
+          <Link to={`/signup`}>
             <p className="btn">Sign up now</p>
           </Link>
         </div>
