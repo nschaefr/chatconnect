@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../../components/chat-page/Sidebar";
-import Chat from "../../components/chat-page/Chat";
+import Sidebar from "../../components/chat-page/sidebar";
+import Chat from "../../components/chat-page/chat";
 import "./chat-page.css";
 
 

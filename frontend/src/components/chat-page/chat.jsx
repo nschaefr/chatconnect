@@ -3,8 +3,8 @@ import "./chat.css"
 import More from "../../assets/pictures/more.png";
 import Add from "../../assets/pictures/add.png";
 import Cam from "../../assets/pictures/cam-recorder.png";
-import Messages from "./Messages";
-import Input from "./Input";
+import Messages from "./messages";
+import Input from "./input";
 
 
 function Chat() {
