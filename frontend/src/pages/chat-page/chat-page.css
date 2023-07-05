@@ -1,0 +1,25 @@
+html,
+body,
+#root,
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(
+            circle at 10% 20%,
+            rgb(90, 92, 106) 0%,
+            rgb(32, 45, 58) 81.3%
+    );
+}
+.container{
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 65%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+}
+
+

@@ -20,7 +20,9 @@ function LoginForm() {
           </Link>
         </div>
         <div className="btn2">
-          <p className="text2">Log In</p>
+            <Link to={`chat`}>
+                <p className="text2">Log In</p>
+            </Link>
         </div>
       </div>
     </div>

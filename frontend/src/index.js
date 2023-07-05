@@ -8,6 +8,7 @@ import "./index.css";
 import LoginPage from "./pages/login-page/login-page";
 import ErrorPage from "./components/utils/route-error";
 import SignupPage from "./pages/signup-page/signup-page";
+import ChatPage from "./pages/chat-page/chat-page";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "signup",
     element: <SignupPage />,
+  },
+  {
+    path: "chat",
+    element: <ChatPage />,
   },
 ]);
 
