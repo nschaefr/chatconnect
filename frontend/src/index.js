@@ -8,7 +8,14 @@ import "./index.css";
 import LoginPage from "./pages/login-page/login-page";
 import ErrorPage from "./components/utils/route-error";
 import SignupPage from "./pages/signup-page/signup-page";
+<<<<<<< HEAD
 import ChatPage from "./pages/chat-page/chat-page";
+=======
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.withCredentials = true;
+>>>>>>> bcc5a6a (updating structure and adding api files)
 
 const router = createBrowserRouter([
   {
