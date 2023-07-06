@@ -9,6 +9,7 @@ import LoginPage from "./pages/login-page/login-page";
 import ErrorPage from "./components/utils/route-error";
 import SignupPage from "./pages/signup-page/signup-page";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ChatPage from "./pages/chat-page/chat-page";
 =======
 import axios from "axios";
@@ -22,6 +23,13 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "http://localhost:4040/";
 axios.defaults.withCredentials = false;
 >>>>>>> dfbd316 (adding UserContext)
+=======
+import axios from "axios";
+import { ContextProvider } from "./components/utils/user-context";
+
+axios.defaults.baseURL = "http://localhost:4040/";
+axios.defaults.withCredentials = false;
+>>>>>>> 69e57f078d0decf221a62d8b14aaff6b8678f781
 
 const router = createBrowserRouter([
   {
@@ -35,6 +43,7 @@ const router = createBrowserRouter([
   },
   {
 <<<<<<< HEAD
+<<<<<<< HEAD
     path: "/chat",
     element: <ChatPage />,
 =======
@@ -42,6 +51,11 @@ const router = createBrowserRouter([
     element: <ChatPage />,
     errorElement: <ErrorPage />,
 >>>>>>> 69e57f0 (update index.js)
+=======
+    path: "/chatpage",
+    element: <ChatPage />,
+    errorElement: <ErrorPage />,
+>>>>>>> 69e57f078d0decf221a62d8b14aaff6b8678f781
   },
 ]);
 
