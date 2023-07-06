@@ -17,11 +17,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "signup",
+    path: "/signup",
     element: <SignupPage />,
   },
   {
-    path: "chat",
+    path: "/chat",
     element: <ChatPage />,
   },
 ]);
