@@ -15,14 +15,17 @@ function LoginForm() {
       <div className="decision">
         <div>
           <p className="text">You don't have an account?</p>
-          <Link to={`/signup`}>
+          <Link
+            to={`/signup`}
+            style={{ textDecoration: "none", color: "#FFF" }}
+          >
             <p className="btn">Sign up now</p>
           </Link>
         </div>
         <div className="btn2">
-            <Link to={`chat`}>
-                <p className="text2">Log In</p>
-            </Link>
+          <Link to={`/chat`} style={{ textDecoration: "none", color: "#FFF" }}>
+            <p className="text2">Log In</p>
+          </Link>
         </div>
       </div>
     </div>

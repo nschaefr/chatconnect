@@ -47,12 +47,14 @@ function SignupForm() {
       <div className="decision">
         <div>
           <p className="text">Already have an account?</p>
-          <Link to={`/`}>
+          <Link to={`/`} style={{ textDecoration: "none", color: "#FFF" }}>
             <p className="btn">Login now</p>
           </Link>
         </div>
         <div className="btn2" onClick={signUp}>
-          <p className="text2">Sign Up</p>
+          <Link to={`/chat`} style={{ textDecoration: "none", color: "#FFF" }}>
+            <p className="text2">Sign Up</p>
+          </Link>
         </div>
       </div>
     </div>
