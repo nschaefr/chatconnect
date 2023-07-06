@@ -12,6 +12,7 @@ import SignupPage from "./pages/signup-page/signup-page";
 import ChatPage from "./pages/chat-page/chat-page";
 =======
 import axios from "axios";
+import { ContextProvider } from "./components/utils/user-context";
 
 <<<<<<< HEAD
 axios.defaults.baseURL = "http://localhost:4000";
@@ -33,14 +34,22 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+<<<<<<< HEAD
     path: "/chat",
     element: <ChatPage />,
+=======
+    path: "/chatpage",
+    element: <ChatPage />,
+    errorElement: <ErrorPage />,
+>>>>>>> 69e57f0 (update index.js)
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
   </React.StrictMode>
 );
