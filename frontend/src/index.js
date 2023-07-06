@@ -13,19 +13,24 @@ import ChatPage from "./pages/chat-page/chat-page";
 =======
 import axios from "axios";
 
+<<<<<<< HEAD
 axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
 >>>>>>> bcc5a6a (updating structure and adding api files)
+=======
+axios.defaults.baseURL = "http://localhost:4040/";
+axios.defaults.withCredentials = false;
+>>>>>>> dfbd316 (adding UserContext)
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/signup",
     element: <SignupPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/chat",
