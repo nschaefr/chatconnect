@@ -12,7 +12,7 @@ import ChatPage from "./pages/chat-page/chat-page";
 import axios from "axios";
 import { ContextProvider } from "./components/utils/user-context";
 
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = "http://localhost:4040";
 axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
