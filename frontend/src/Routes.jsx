@@ -4,7 +4,7 @@ import ChatPage from "./pages/chat-page/chat-page";
 import SignuploginPage from "./pages/signuplogin-page/signuplogin-page";
 
 export default function Routes() {
-  const { username, id } = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
   if (username) {
     return <ChatPage />;

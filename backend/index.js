@@ -52,6 +52,8 @@ app.post("/login", async (req, res) => {
     } else {
       res.json({ valid: false });
     }
+  } else {
+    res.json({ valid: false });
   }
 });
 

@@ -3,7 +3,7 @@ import "./chat.css";
 import { UserContext } from "../utils/user-context";
 
 function Navbar() {
-  const { username, id } = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
   return (
     <div className="navbar">

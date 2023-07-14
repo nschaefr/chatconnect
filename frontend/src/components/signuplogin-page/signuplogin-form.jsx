@@ -32,8 +32,6 @@ function SignuploginForm() {
       setLoggedInUsername(username);
       setId(data.id);
     }
-    await console.log(data.valid);
-    await console.log(password);
     if (form === "login" && data.valid) {
       setLoggedInUsername(username);
       setId(data.id);
@@ -56,6 +54,7 @@ function SignuploginForm() {
       setUsername(username);
       setUsernameValidation(true);
       setDupeValidation(null);
+      setAccountValidation(null);
     } else {
       setUsernameValidation(false);
     }
@@ -71,7 +70,7 @@ function SignuploginForm() {
         <p className="slogan">Sign up for chatting with your friends.</p>
       )}
       <form>
-        {isValidUsername === false && (
+        {isValidUsername === false && form === "signup" && (
           <p className="invalid">
             {form === "signup" && <span>Username cannot be empty.</span>}
           </p>
@@ -79,9 +78,11 @@ function SignuploginForm() {
         {form === "login" && isValidAccount === false && (
           <p className="invalid">Incorrect username or password.</p>
         )}
-        {isDupeUsername === true && isValidUsername === true && (
-          <p className="invalid">Username already exists.</p>
-        )}
+        {isDupeUsername === true &&
+          isValidUsername === true &&
+          form === "signup" && (
+            <p className="invalid">Username already exists.</p>
+          )}
         <input
           type="name"
           ref={usernameIn}
