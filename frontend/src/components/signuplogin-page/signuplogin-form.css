@@ -5,58 +5,67 @@
 
 .header {
   color: white;
-  font-size: 28px;
+  font-size: 38px;
   line-height: 0.25;
-  font-family: "SemiBold";
+  font-family: "SemiBold", serif;
 }
 
 .slogan {
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 0.25;
   margin-bottom: 30px;
-  font-family: "Regular";
+  font-family: "Regular", serif;
 }
 
 .input {
-  width: 86%;
+  width: 89%;
   border-radius: 4px;
-  padding: 8px;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 14px;
   background-image: url("../../assets/icons/mail.svg");
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 10px;
-  padding-left: 40px;
-  font-family: "Regular";
+  padding: 8px 8px 8px 40px;
+  font-family: "Regular", serif;
+}
+
+.input:focus{
+  outline: none;
 }
 
 .input2 {
-  width: 86%;
+  width: 89%;
   border-radius: 4px;
-  padding: 8px;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 14px;
   background-image: url("../../assets/icons/person.svg");
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 10px;
-  padding-left: 40px;
-  font-family: "Regular";
+  padding: 8px 8px 8px 40px;
+  font-family: "Regular", serif;
+}
+
+.input2:focus{
+  outline: none;
 }
 
 .pwd {
-  width: 86%;
+  width: 89%;
   border-radius: 4px;
-  padding: 8px;
-  font-size: 10px;
+  font-size: 14px;
   background-image: url("../../assets/icons/lock.svg");
   background-size: 18px;
   background-repeat: no-repeat;
   background-position: 11px;
-  padding-left: 40px;
-  font-family: "Regular";
+  padding: 8px 8px 8px 40px;
+  font-family: "Regular", serif;
+}
+
+.pwd:focus{
+  outline: none;
 }
 
 .decision {
@@ -68,19 +77,28 @@
 
 .text {
   color: white;
+  font-size: 14px;
+  line-height: 0;
+  font-family: "Regular", serif;
+}
+
+.invalid {
+  display: flex;
+  align-content: center;
+  color: #fa442f;
   font-size: 12px;
   line-height: 0;
-  font-family: "Regular";
+  font-family: "Medium", serif;
 }
 
 .btn {
   color: white;
   text-decoration: underline;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 0.25;
   margin-top: 13px;
   margin-bottom: 25px;
-  font-family: "SemiBold";
+  font-family: "SemiBold", serif;
   cursor: pointer;
 }
 
@@ -103,7 +121,7 @@
   padding-right: 10px;
   width: fit-content;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 0.4;
-  font-family: "Medium";
+  font-family: "Medium", serif;
 }
