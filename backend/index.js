@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose").default;
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -6,32 +7,84 @@ const cookieParser = require("cookie-parser");
 const jsonWebToken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("./models/user");
-
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: "Chat-API",
+      description: "Userinformation for chatting",
+      contact: {
+        name: "Nils Schäfer",
+      },
+      servers: ["http://localhost:4040"],
+    },
+  },
+  apis: ["index.js"],
+};
 dotenv.config();
-mongoose.connect(process.env.MONGO_URL);
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const jsonWebTokenSecret = process.env.JWT_SECRET;
 const bcryptSalt = bcrypt.genSaltSync(10);
 
-const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
-  }),
+  })
 );
+app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+mongoose.connect(process.env.MONGO_URL);
+
+// Routes
+
+/**
+ * @swagger
+ * /profile:
+ *  get:
+ *    tags:
+ *      - Profile
+ *    description: Get user profile data using a token from cookies.
+ *    responses:
+ *      200:
+ *        description: Successful response
+ */
 app.get("/profile", async (req, res) => {
   const token = req.cookies?.token;
   if (token) {
     jsonWebToken.verify(token, jsonWebTokenSecret, {}, (err, userData) => {
       if (err) throw err;
-      res.json(userData);
+      res.status(200).json(userData);
     });
   }
 });
 
+/**
+ * @swagger
+ * /login:
+ *  post:
+ *    tags:
+ *      - Authentication
+ *    description: Authenticate a user and generate a JWT token upon successful login.
+ *    parameters:
+ *      - name: body
+ *        description: User credentials.
+ *        in: body
+ *        required: true
+ *        schema:
+ *          type: object
+ *          properties:
+ *            username:
+ *              type: string
+ *            password:
+ *              type: string
+ *    responses:
+ *      200:
+ *        description: Successful login
+ */
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
@@ -43,11 +96,15 @@ app.post("/login", async (req, res) => {
         jsonWebTokenSecret,
         {},
         (err, token) => {
-          res.cookie("token", token).json({
-            id: foundUser._id,
-            valid: true,
-          });
-        },
+          if (err) {
+            throw err;
+          } else {
+            res.cookie("token", token).status(200).json({
+              id: foundUser._id,
+              valid: true,
+            });
+          }
+        }
       );
     } else {
       res.json({ valid: false });
@@ -57,6 +114,29 @@ app.post("/login", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /signup:
+ *  post:
+ *    tags:
+ *      - Authentication
+ *    description: Create a new user and generate a JWT token upon successful signup.
+ *    parameters:
+ *      - name: body
+ *        description: User credentials.
+ *        in: body
+ *        required: true
+ *        schema:
+ *          type: object
+ *          properties:
+ *            username:
+ *              type: string
+ *            password:
+ *              type: string
+ *    responses:
+ *      201:
+ *        description: Successful signup
+ */
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -78,7 +158,7 @@ app.post("/signup", async (req, res) => {
             id: createdUser._id,
             username,
           });
-      },
+      }
     );
   } catch (err) {
     res.json({
