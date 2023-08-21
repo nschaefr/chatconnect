@@ -1,4 +1,4 @@
-import Chats from "../../components/chat-page/chats";
+import Sidebar from "../../components/chat-page/sidebar";
 import Chat from "../../components/chat-page/chat";
 import "./chat-page.css";
 
@@ -6,7 +6,7 @@ function ChatPage() {
   return (
     <div className="page">
       <div className="container">
-        <Chats />
+        <Sidebar />
         <Chat />
       </div>
     </div>

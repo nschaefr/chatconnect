@@ -1,13 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Avatar from "./avatar";
+import axios from "axios";
 import { UserContext } from "../utils/user-context";
 import logo from "../../assets/icons/logo.svg";
+import Contact from "./contact";
 
-function Chats() {
+function Sidebar() {
   const [webSocket, setWebSocket] = useState(null);
+  const [onlinePeopleList, setOnlinePeopleList] = useState({});
   const [onlinePeople, setOnlinePeople] = useState({});
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const { username, id } = useContext(UserContext);
+  const { username, id, setUsername, setId } = useContext(UserContext);
+  const keyword = useRef(null);
+
   useEffect(() => {
     const webSocket = new WebSocket("ws://localhost:4040");
     setWebSocket(webSocket);
@@ -20,17 +25,46 @@ function Chats() {
       people[userId] = username;
     });
     setOnlinePeople(people);
+    setOnlinePeopleList(people);
   }
 
   function handleMessage(event) {
     const messageData = JSON.parse(event.data);
     if ("online" in messageData) {
       showOnlinePeople(messageData.online);
+    } else if ("text" in messageData) {
+      if (messageData.sender === selectedUserId) {
+        setMessages((prev) => [...prev, { ...messageData }]);
+      }
     }
   }
 
-  const onlinePeopleWithoutUserHimself = { ...onlinePeople };
-  delete onlinePeopleWithoutUserHimself[id];
+  function filterbyKeyword() {
+    const keywordValue = keyword.current.value;
+
+    if (!keywordValue) {
+      setOnlinePeopleList(onlinePeople);
+      return;
+    }
+
+    if (keywordValue) {
+      const filteredOnlinePeople = Object.entries(onlinePeople)
+        .filter(([userId, username]) => {
+          return (
+            userId.includes(keyword.current.value) ||
+            username.includes(keyword.current.value)
+          );
+        })
+        .reduce((filtered, [userId, username]) => {
+          filtered[userId] = username;
+          return filtered;
+        }, {});
+
+      setOnlinePeopleList(filteredOnlinePeople);
+      console.log(filteredOnlinePeople);
+      console.log(keyword);
+    }
+  }
 
   return (
     <div className="chats">
@@ -53,40 +87,26 @@ function Chats() {
       </div>
       <div className="search">
         <div className="searchInputContainer">
-          <input className="searchInput" placeholder="Find contacts..." />
+          <input
+            ref={keyword}
+            onChange={filterbyKeyword}
+            className="searchInput"
+            placeholder="Find contacts..."
+          />
         </div>
       </div>
-      {Object.keys(onlinePeopleWithoutUserHimself).map((userId) => (
-        <div style={{ display: "flex" }}>
-          {selectedUserId === userId && (
-            <div
-              style={{
-                width: "3px",
-                backgroundColor: "#FFFFFF",
-              }}
-            ></div>
-          )}
-          <div
-            style={{
-              padding: "10px 20px 10px 20px",
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-              color: "white",
-              gap: "10px",
-              cursor: "pointer",
-              backgroundColor: `${
-                userId === selectedUserId ? "#44444F" : "#31313A"
-              }`,
-            }}
+      {Object.keys(onlinePeopleList).map((userId) => (
+        <div style={{ display: "flex" }} key={userId}>
+          <Contact
             key={userId}
-            onClick={() => setSelectedUserId(userId)}
-          >
-            <Avatar username={onlinePeople[userId]} userId={userId} />
-            <div className="chatInfo">
-              <span className="chatInfoSpan">{onlinePeople[userId]}</span>
-            </div>
-          </div>
+            id={userId}
+            online={true}
+            username={onlinePeopleList[userId]}
+            onClick={() => {
+              setSelectedUserId(userId);
+            }}
+            selected={userId === selectedUserId}
+          />
         </div>
       ))}
       <div
@@ -102,11 +122,11 @@ function Chats() {
           color: "white",
         }}
       >
-        <img src={logo} alt="chat-logo" width="30px" />
-        <p style={{ marginLeft: "15px" }}>ChatConnect</p>
+        <img src={logo} alt="chat-logo" width="28px" />
+        <p style={{ marginLeft: "13px" }}>ChatConnect</p>
       </div>
     </div>
   );
 }
 
-export default Chats;
+export default Sidebar;
