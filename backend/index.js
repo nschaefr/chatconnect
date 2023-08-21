@@ -26,6 +26,7 @@ dotenv.config();
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const jsonWebTokenSecret = process.env.JWT_SECRET;
 const bcryptSalt = bcrypt.genSaltSync(10);
+const webSocket = require("ws");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -167,4 +168,36 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.listen(4040, "localhost");
+const server = app.listen(4040, "localhost");
+const webSocketServer = new webSocket.WebSocketServer({ server });
+
+webSocketServer.on("connection", (connection, req) => {
+  const cookies = req.headers.cookie;
+  if (cookies) {
+    const tokenCookieString = cookies
+      .split(";")
+      .find((string) => string.startsWith("token="));
+    if (tokenCookieString) {
+      const token = tokenCookieString.split("=")[1];
+      if (token) {
+        jsonWebToken.verify(token, jsonWebTokenSecret, {}, (err, userData) => {
+          if (err) throw err;
+          const { userId, username } = userData;
+          connection.userId = userId;
+          connection.username = username;
+        });
+      }
+    }
+  }
+
+  [...webSocketServer.clients].forEach((client) => {
+    client.send(
+      JSON.stringify({
+        online: [...webSocketServer.clients].map((client) => ({
+          userId: client.userId,
+          username: client.username,
+        })),
+      })
+    );
+  });
+});
