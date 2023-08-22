@@ -212,7 +212,7 @@ function Sidebar() {
                   <img
                     src={Attach}
                     alt=""
-                    width={"34px"}
+                    width={"32px"}
                     style={{ marginLeft: "15px" }}
                   />
                   <input type="file" style={{ display: "none" }} id="file" />
@@ -220,7 +220,7 @@ function Sidebar() {
                     <img
                       src={Image}
                       alt=""
-                      width={"24px"}
+                      width={"22px"}
                       style={{ marginTop: "4px", marginRight: "10px" }}
                     />
                   </label>
