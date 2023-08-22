@@ -35,6 +35,7 @@ function Sidebar() {
 
     setOnlinePeopleList(extractedUserHimself);
     setOnlinePeople(extractedUserHimself);
+    console.log(extractedUserHimself);
   }
 
   function handleMessage(event) {

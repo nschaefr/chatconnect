@@ -7,9 +7,23 @@ function Avatar({ username, userId }) {
     "#00214f",
     "#a5def2",
   ];
-  const userIdBase10 = parseInt(userId, 32);
-  const colorIndex = userIdBase10 % colors.length;
-  const randomColor = colors[colorIndex];
+
+  function hashCode(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+    }
+    return hash;
+  }
+
+  function getColorByHash(hash) {
+    const colorIndex = Math.abs(hash) % colors.length;
+    return colors[colorIndex];
+  }
+
+  const userHash = hashCode(userId);
+  const randomColor = getColorByHash(userHash);
   const shortName = username[0].toUpperCase();
 
   return (
@@ -23,6 +37,7 @@ function Avatar({ username, userId }) {
         alignItems: "center",
         justifyContent: "center",
       }}
+      onClick={() => console.log(userIdBase10)}
     >
       <div
         style={{
