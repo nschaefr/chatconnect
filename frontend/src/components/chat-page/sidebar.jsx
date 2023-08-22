@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Avatar from "./avatar";
-import axios from "axios";
 import { UserContext } from "../utils/user-context";
 import logo from "../../assets/icons/logo.svg";
 import Contact from "./contact";
@@ -10,7 +9,7 @@ function Sidebar() {
   const [onlinePeopleList, setOnlinePeopleList] = useState({});
   const [onlinePeople, setOnlinePeople] = useState({});
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const { username, id, setUsername, setId } = useContext(UserContext);
+  const { username, id, setLoggedInUsername, setId } = useContext(UserContext);
   const keyword = useRef(null);
 
   useEffect(() => {
@@ -24,8 +23,18 @@ function Sidebar() {
     peopleArray.forEach(({ userId, username }) => {
       people[userId] = username;
     });
-    setOnlinePeople(people);
-    setOnlinePeopleList(people);
+
+    const extractedUserHimself = Object.entries(people)
+      .filter(([userId, user]) => {
+        return !(user === username);
+      })
+      .reduce((extracted, [userId, user]) => {
+        extracted[userId] = user;
+        return extracted;
+      }, {});
+
+    setOnlinePeopleList(extractedUserHimself);
+    setOnlinePeople(extractedUserHimself);
   }
 
   function handleMessage(event) {
@@ -48,21 +57,18 @@ function Sidebar() {
     }
 
     if (keywordValue) {
-      const filteredOnlinePeople = Object.entries(onlinePeople)
-        .filter(([userId, username]) => {
-          return (
-            userId.includes(keyword.current.value) ||
-            username.includes(keyword.current.value)
-          );
-        })
-        .reduce((filtered, [userId, username]) => {
-          filtered[userId] = username;
-          return filtered;
-        }, {});
-
-      setOnlinePeopleList(filteredOnlinePeople);
-      console.log(filteredOnlinePeople);
-      console.log(keyword);
+      setOnlinePeopleList(() =>
+        Object.entries(onlinePeople)
+          .filter(([userId, username]) => {
+            return (
+              userId.includes(keywordValue) || username.includes(keywordValue)
+            );
+          })
+          .reduce((filtered, [userId, username]) => {
+            filtered[userId] = username;
+            return filtered;
+          }, {})
+      );
     }
   }
 
