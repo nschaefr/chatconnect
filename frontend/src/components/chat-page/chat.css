@@ -51,7 +51,8 @@
     padding: 8px 10px 8px 10px;
     border: none;
     cursor: pointer;
-    margin-left: 71px;
+    margin-left: 60px;
+    margin-right: 21px;
 }
 /*
     Search Styles
@@ -105,12 +106,13 @@
 }
 .messages{
     background-color: #44444F ;
-    padding: 10px;
-    height: calc(100% - 160px);
+    position: absolute;
+    padding: 0px;
+    height: 100%;
     overflow: scroll;
 }
 .messageInputContainer{
-    height: 50px;
+    height: 40px;
     background-color:#3A3A44;
     padding: 10px;
     display: flex;
@@ -119,28 +121,23 @@
 }
 .messageInput{
     width: 100%;
+    height: 35px;
     border: none;
+    padding: 5px 15px 5px 15px;
     outline: none;
     color: white;
-    font-size: 18px ;
+    font-size: 15px ;
     background-color: transparent;
 }
 .sendContainer{
     display: flex;
     align-items: center;
-    gap:10px;
+    gap:20px;
 }
 .sendContainerImg{
     height: 24px;
     cursor: pointer;
 }
-.sendButton{
-    border: none;
-    padding: 10px 15px;
-    color: white;
-    background-color: #44444F;
-}
-
 .messageContainer{
     display: flex;
     gap: 20px;
@@ -152,7 +149,6 @@
     margin-bottom: 20px;
     flex-direction: row-reverse;
 }
-
 .messageInfo{
     display: flex;
     flex-direction: column;
