@@ -61,9 +61,7 @@ function Sidebar() {
       setOnlinePeopleList(() =>
         Object.entries(onlinePeople)
           .filter(([userId, username]) => {
-            return (
-              userId.includes(keywordValue) || username.includes(keywordValue)
-            );
+            return username.includes(keywordValue);
           })
           .reduce((filtered, [userId, username]) => {
             filtered[userId] = username;
