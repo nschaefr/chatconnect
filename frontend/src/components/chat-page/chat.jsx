@@ -8,7 +8,7 @@ import Image from "../../assets/icons/image.svg";
 import Send from "../../assets/icons/send.svg";
 import Attach from "../../assets/icons/attach.svg";
 
-function Sidebar() {
+function Chat() {
   const [webSocket, setWebSocket] = useState(null);
   const [onlinePeopleList, setOnlinePeopleList] = useState({});
   const [onlinePeople, setOnlinePeople] = useState({});
@@ -234,4 +234,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Chat;
