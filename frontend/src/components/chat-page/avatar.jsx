@@ -42,6 +42,7 @@ function Avatar({ username, userId }) {
         style={{
           opacity: "75%",
           fontWeight: "bold",
+          color: "white",
           fontSize: `${userId === "default" ? "22px" : "15px"}`,
         }}
       >

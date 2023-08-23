@@ -18,7 +18,7 @@ function Chat() {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const keyword = useRef(null);
-  const chatBox = useRef();
+  const messageDiv = useRef();
 
   useEffect(() => {
     const webSocket = new WebSocket("ws://localhost:4040");
@@ -71,6 +71,8 @@ function Chat() {
         id: Date.now(),
       },
     ]);
+
+    messageDiv.current.scrollIntoview({ behavior: "smooth" });
   }
 
   function filterbyKeyword() {
@@ -185,31 +187,94 @@ function Chat() {
             style={{
               overflowY: "scroll",
               height: "calc(100% - 60px)",
+              paddingTop: "10px",
             }}
           >
             {extractedMessages.map((message) => (
               <div>
                 <div
                   style={{
-                    width: "fit-content",
-                    backgroundColor:
-                      message.sender === id ? "#31313A" : "#D9D9D9",
-                    color: message.sender === id ? "#FFFFFF" : "#31313A",
-                    padding: "10px",
-                    display: "flex",
-                    flexDirection: "column-reverse",
-                    marginTop: "8px",
-                    marginBottom: "8px",
-                    marginLeft: message.sender === id ? "auto" : "10px",
-                    marginRight: message.sender === id ? "10px" : "0px",
-                    borderRadius:
-                      message.sender === id
-                        ? "10px 0px 10px 10px"
-                        : "0px 10px 10px 10px",
-                    fontSize: "15px",
+                    width: "100%",
+                    alignItems: "center",
+                    marginLeft: "15px",
+                    marginBottom: "22px",
+                    marginTop: "22px",
                   }}
                 >
-                  <div style={{ maxWidth: "35%" }}>{message.text}</div>
+                  {message.sender === id && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Avatar username={username} userId={"chat"} />
+                      <div
+                        style={{
+                          marginLeft: "12px",
+                          width: "calc(100% - 100px)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            color: "white",
+                            fontSize: "15px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          You
+                        </div>
+                        <div
+                          style={{
+                            width: "100%",
+                            color: "white",
+                            fontSize: "13px",
+                            marginTop: "5px",
+                            display: "flex",
+                            flexDirection: "column",
+                            wordBreak: "break-word",
+                          }}
+                        >
+                          {message.text}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {message.sender === selectedUserId && (
+                    <div style={{ display: "flex" }}>
+                      <Avatar
+                        username={onlinePeopleList[selectedUserId]}
+                        userId={selectedUserId}
+                      />
+                      <div
+                        style={{
+                          marginLeft: "12px",
+                          width: "calc(100% - 100px)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            color: "white",
+                            fontSize: "15px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {onlinePeopleList[selectedUserId]}
+                        </div>
+                        <div
+                          style={{
+                            width: "100%",
+                            color: "white",
+                            fontSize: "13px",
+                            marginTop: "5px",
+                          }}
+                        >
+                          {message.text}
+                        </div>
+                        <div ref={messageDiv}></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
