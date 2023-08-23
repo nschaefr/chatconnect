@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const jsonWebToken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("./models/user");
+const Message = require("./models/message");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const swaggerOptions = {
@@ -189,6 +190,30 @@ webSocketServer.on("connection", (connection, req) => {
       }
     }
   }
+
+  connection.on("message", async (message) => {
+    const messageData = JSON.parse(message.toString());
+    const { recipient, text } = messageData;
+    if (recipient && text) {
+      const messageDocument = await Message.create({
+        sender: connection.userId,
+        recipient,
+        text,
+      });
+      [...webSocketServer.clients]
+        .filter((client) => client.userId === recipient)
+        .forEach((client) =>
+          client.send(
+            JSON.stringify({
+              text,
+              sender: connection.userId,
+              recipient,
+              id: messageDocument._id,
+            })
+          )
+        );
+    }
+  });
 
   [...webSocketServer.clients].forEach((client) => {
     client.send(

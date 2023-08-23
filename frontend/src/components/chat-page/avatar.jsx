@@ -37,7 +37,6 @@ function Avatar({ username, userId }) {
         alignItems: "center",
         justifyContent: "center",
       }}
-      onClick={() => console.log(userIdBase10)}
     >
       <div
         style={{

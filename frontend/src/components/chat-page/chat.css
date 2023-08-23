@@ -112,7 +112,10 @@
     overflow: scroll;
 }
 .messageInputContainer{
+    width: calc(100% - 318px);
     height: 40px;
+    position: absolute;
+    bottom: 0;
     background-color:#3A3A44;
     padding: 10px;
     display: flex;

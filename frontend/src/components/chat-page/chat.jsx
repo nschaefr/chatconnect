@@ -4,6 +4,7 @@ import { UserContext } from "../utils/user-context";
 import logo from "../../assets/icons/logo.svg";
 import Contact from "./contact";
 import Messages from "./messages";
+import { uniqBy } from "lodash";
 import Image from "../../assets/icons/image.svg";
 import Send from "../../assets/icons/send.svg";
 import Attach from "../../assets/icons/attach.svg";
@@ -15,7 +16,9 @@ function Chat() {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const { username, id, setLoggedInUsername, setId } = useContext(UserContext);
   const [newMessage, setNewMessage] = useState("");
+  const [messages, setMessages] = useState([]);
   const keyword = useRef(null);
+  const chatBox = useRef();
 
   useEffect(() => {
     const webSocket = new WebSocket("ws://localhost:4040");
@@ -37,10 +40,8 @@ function Chat() {
         extracted[userId] = user;
         return extracted;
       }, {});
-
     setOnlinePeopleList(extractedUserHimself);
     setOnlinePeople(extractedUserHimself);
-    console.log(extractedUserHimself);
   }
 
   function handleMessage(event) {
@@ -48,9 +49,7 @@ function Chat() {
     if ("online" in messageData) {
       showOnlinePeople(messageData.online);
     } else if ("text" in messageData) {
-      if (messageData.sender === selectedUserId) {
-        setMessages((prev) => [...prev, { ...messageData }]);
-      }
+      setMessages((prev) => [...prev, { ...messageData }]);
     }
   }
 
@@ -58,12 +57,20 @@ function Chat() {
     event.preventDefault();
     webSocket.send(
       JSON.stringify({
-        message: {
-          recipient: selectedUserId,
-          text: newMessage,
-        },
+        recipient: selectedUserId,
+        text: newMessage,
       })
     );
+    setNewMessage("");
+    setMessages((previous) => [
+      ...previous,
+      {
+        text: newMessage,
+        sender: id,
+        recipient: selectedUserId,
+        id: Date.now(),
+      },
+    ]);
   }
 
   function filterbyKeyword() {
@@ -88,8 +95,17 @@ function Chat() {
     }
   }
 
+  const extractedMessages = uniqBy(messages, "id");
+
   return (
-    <div style={{ display: "flex", backgroundColor: "#31313A", width: "100%" }}>
+    <div
+      style={{
+        display: "flex",
+        backgroundColor: "#31313A",
+        width: "100%",
+        overflow: "hidden",
+      }}
+    >
       <div>
         <div className="navbar">
           <div className="user">
@@ -165,8 +181,42 @@ function Chat() {
           </div>
         )}
         {selectedUserId && (
+          <div
+            style={{
+              overflowY: "scroll",
+              height: "calc(100% - 60px)",
+            }}
+          >
+            {extractedMessages.map((message) => (
+              <div>
+                <div
+                  style={{
+                    width: "fit-content",
+                    backgroundColor:
+                      message.sender === id ? "#31313A" : "#D9D9D9",
+                    color: message.sender === id ? "#FFFFFF" : "#31313A",
+                    padding: "10px",
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    marginTop: "8px",
+                    marginBottom: "8px",
+                    marginLeft: message.sender === id ? "auto" : "10px",
+                    marginRight: message.sender === id ? "10px" : "0px",
+                    borderRadius:
+                      message.sender === id
+                        ? "10px 0px 10px 10px"
+                        : "0px 10px 10px 10px",
+                    fontSize: "15px",
+                  }}
+                >
+                  <div style={{ maxWidth: "35%" }}>{message.text}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {selectedUserId && (
           <div style={{ height: "100%" }}>
-            <div style={{ height: "calc(100% - 60px)" }}></div>
             <div>
               <div className="messageInputContainer">
                 <div
