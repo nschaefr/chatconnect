@@ -95,6 +95,13 @@ function Chat() {
     }
   }
 
+  useEffect(() => {
+    const container = alwaysBottom.current;
+    if (container) {
+      container.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [messages]);
+
   const extractedMessages = uniqBy(messages, "id");
 
   return (
@@ -190,6 +197,7 @@ function Chat() {
           flexDirection: "column",
           width: "70%",
           backgroundColor: "#44444F",
+          paddingTop: "20px",
         }}
       >
         <div style={{ flexGrow: "1" }}>
@@ -209,15 +217,20 @@ function Chat() {
             </div>
           )}
           {selectedUserId && (
-            <div style={{ position: "relative", height: "100%" }}>
+            <div
+              style={{
+                position: "relative",
+                height: "100%",
+              }}
+            >
               <div
                 style={{
-                  overflowY: "scroll",
                   position: "absolute",
-                  top: "0",
-                  left: "0",
+                  bottom: "0",
                   right: "0",
-                  bottom: "2",
+                  left: "0",
+                  top: "0",
+                  overflowY: "scroll",
                 }}
               >
                 {extractedMessages.map((message) => (
@@ -320,7 +333,6 @@ function Chat() {
             style={{
               display: "flex",
               padding: "10px",
-              backgroundColor: "#31313A",
             }}
             onSubmit={sendMessage}
           >
