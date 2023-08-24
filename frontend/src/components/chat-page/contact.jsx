@@ -29,7 +29,15 @@ function Contact({ id, username, onClick, selected, online }) {
       )}
       <Avatar username={username} userId={id} />
       <div className="chatInfo">
-        <span className="chatInfoSpan">{username}</span>
+        <span
+          style={{
+            fontSize: "15px",
+            fontWeight: "bold",
+            opacity: `${selected ? "100%" : "50%"}`,
+          }}
+        >
+          {username}
+        </span>
       </div>
     </div>
   );
