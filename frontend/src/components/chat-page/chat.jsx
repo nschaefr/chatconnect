@@ -129,7 +129,7 @@ function Chat() {
             }}
           >
             <Avatar username={username} userId="default" />
-            <div style={{ display: "flex", gap: "85px" }}>
+            <div style={{ display: "flex" }}>
               <div
                 style={{
                   display: "flex",
@@ -141,20 +141,6 @@ function Chat() {
               >
                 <span style={{ fontWeight: "bold" }}>{username}</span>
                 <p style={{ fontSize: "11px" }}>logged in</p>
-              </div>
-              <div
-                style={{
-                  backgroundColor: "white",
-                  display: "flex",
-                  borderRadius: "10px",
-                  height: "fit-content",
-                  width: "fit-content",
-                  padding: "2px",
-                  marginTop: "5px",
-                  cursor: "pointer",
-                }}
-              >
-                <img src={Logout} width={"30px"} />
               </div>
             </div>
           </div>
@@ -190,6 +176,17 @@ function Chat() {
             />
           ))}
         </div>
+        <div
+          style={{
+            display: "flex",
+            height: "fit-content",
+            width: "fit-content",
+            marginLeft: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          <img src={Logout} width={"30px"} style={{ cursor: "pointer" }} />
+        </div>
       </div>
       <div
         style={{
@@ -197,7 +194,6 @@ function Chat() {
           flexDirection: "column",
           width: "70%",
           backgroundColor: "#44444F",
-          paddingTop: "20px",
         }}
       >
         <div style={{ flexGrow: "1" }}>
@@ -231,6 +227,7 @@ function Chat() {
                   left: "0",
                   top: "0",
                   overflowY: "scroll",
+                  paddingTop: "20px",
                 }}
               >
                 {extractedMessages.map((message) => (
@@ -332,7 +329,7 @@ function Chat() {
           <form
             style={{
               display: "flex",
-              padding: "10px",
+              padding: "0px 10px 10px 10px",
             }}
             onSubmit={sendMessage}
           >
