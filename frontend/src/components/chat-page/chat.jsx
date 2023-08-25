@@ -3,11 +3,11 @@ import Avatar from "./avatar";
 import { UserContext } from "../utils/user-context";
 import logo from "../../assets/icons/logo.svg";
 import Contact from "./contact";
-import Messages from "./messages";
 import { uniqBy } from "lodash";
 import Image from "../../assets/icons/image.svg";
 import Send from "../../assets/icons/send.svg";
 import Attach from "../../assets/icons/attach.svg";
+import Logout from "../../assets/icons/logout.svg";
 
 function Chat() {
   const [webSocket, setWebSocket] = useState(null);
@@ -18,7 +18,7 @@ function Chat() {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const keyword = useRef(null);
-  const messageDiv = useRef();
+  const alwaysBottom = useRef();
 
   useEffect(() => {
     const webSocket = new WebSocket("ws://localhost:4040");
@@ -71,8 +71,6 @@ function Chat() {
         id: Date.now(),
       },
     ]);
-
-    messageDiv.current.scrollIntoview({ behavior: "smooth" });
   }
 
   function filterbyKeyword() {
@@ -97,47 +95,74 @@ function Chat() {
     }
   }
 
+  useEffect(() => {
+    const container = alwaysBottom.current;
+    if (container) {
+      container.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [messages]);
+
   const extractedMessages = uniqBy(messages, "id");
 
   return (
     <div
       style={{
         display: "flex",
-        backgroundColor: "#31313A",
-        width: "100%",
-        overflow: "hidden",
+        height: "100vh",
+        width: "100vw",
       }}
     >
-      <div>
-        <div className="navbar">
-          <div className="user">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "30%",
+          backgroundColor: "#31313A",
+        }}
+      >
+        <div style={{ flexGrow: "1" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "12px",
+              padding: "25px 10px 5px 20px",
+            }}
+          >
             <Avatar username={username} userId="default" />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: "10px",
-                lineHeight: "5px",
-              }}
-            >
-              <span style={{ fontWeight: "bold" }}>{username}</span>
-              <p style={{ fontSize: "11px" }}>logged in</p>
+            <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "10px",
+                  lineHeight: "5px",
+                  color: "white",
+                }}
+              >
+                <span style={{ fontWeight: "bold" }}>{username}</span>
+                <p style={{ fontSize: "11px" }}>logged in</p>
+              </div>
             </div>
-            <button className="logout-button">Logout</button>
           </div>
-        </div>
-        <div className="search">
-          <div className="searchInputContainer">
-            <input
-              ref={keyword}
-              onChange={filterbyKeyword}
-              className="searchInput"
-              placeholder="Find contacts..."
-            />
+          <div>
+            <div style={{ padding: "25px 10px 15px 20px" }}>
+              <input
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: "2.5px",
+                  border: "none",
+                  padding: "5px 10px 5px 10px",
+                  color: "#31313A",
+                  outline: "none",
+                  width: "88%",
+                }}
+                ref={keyword}
+                onChange={filterbyKeyword}
+                placeholder="Find contacts..."
+              />
+            </div>
           </div>
-        </div>
-        {Object.keys(onlinePeopleList).map((userId) => (
-          <div style={{ display: "flex" }} key={userId}>
+          {Object.keys(onlinePeopleList).map((userId) => (
             <Contact
               key={userId}
               id={userId}
@@ -145,204 +170,221 @@ function Chat() {
               username={onlinePeopleList[userId]}
               onClick={() => {
                 setSelectedUserId(userId);
+                setNewMessage("");
               }}
               selected={userId === selectedUserId}
             />
-          </div>
-        ))}
+          ))}
+        </div>
         <div
           style={{
-            position: "absolute",
-            bottom: "0",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginLeft: "45px",
-            fontSize: "25px",
-            fontWeight: "1000",
-            color: "white",
+            height: "fit-content",
+            width: "fit-content",
+            marginLeft: "20px",
+            marginBottom: "20px",
           }}
         >
-          <img src={logo} alt="chat-logo" width="28px" />
-          <p style={{ marginLeft: "10px" }}>ChatConnect</p>
+          <img src={Logout} width={"30px"} style={{ cursor: "pointer" }} />
         </div>
       </div>
-      <div style={{ width: "100%", backgroundColor: "#44444F" }}>
-        {!selectedUserId && (
-          <div
-            style={{
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#FFFFFF",
-              opacity: "30%",
-            }}
-          >
-            You haven't selected a chat yet
-          </div>
-        )}
-        {selectedUserId && (
-          <div
-            style={{
-              overflowY: "scroll",
-              height: "calc(100% - 60px)",
-              paddingTop: "10px",
-            }}
-          >
-            {extractedMessages.map((message) => (
-              <div>
-                <div
-                  style={{
-                    width: "100%",
-                    alignItems: "center",
-                    marginLeft: "15px",
-                    marginBottom: "22px",
-                    marginTop: "22px",
-                  }}
-                >
-                  {message.sender === id && (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "70%",
+          backgroundColor: "#44444F",
+        }}
+      >
+        <div style={{ flexGrow: "1" }}>
+          {!selectedUserId && (
+            <div
+              style={{
+                height: "100%",
+                display: "flex",
+                flexGrow: "1",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#FFFFFF",
+                opacity: "30%",
+              }}
+            >
+              You haven't selected a chat yet
+            </div>
+          )}
+          {selectedUserId && (
+            <div
+              style={{
+                position: "relative",
+                height: "100%",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  right: "0",
+                  left: "0",
+                  top: "0",
+                  overflowY: "scroll",
+                  paddingTop: "20px",
+                }}
+              >
+                {extractedMessages.map((message) => (
+                  <div style={{ padding: "10px 0px 10px 15px" }}>
                     <div
                       style={{
-                        display: "flex",
-                        flexDirection: "row",
+                        width: "100%",
+                        alignItems: "center",
                       }}
                     >
-                      <Avatar username={username} userId={"chat"} />
-                      <div
-                        style={{
-                          marginLeft: "12px",
-                          width: "calc(100% - 100px)",
-                        }}
-                      >
+                      {message.sender === id && (
                         <div
                           style={{
-                            color: "white",
-                            fontSize: "15px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          You
-                        </div>
-                        <div
-                          style={{
-                            width: "100%",
-                            color: "white",
-                            fontSize: "13px",
-                            marginTop: "5px",
                             display: "flex",
-                            flexDirection: "column",
-                            wordBreak: "break-word",
+                            flexDirection: "row",
                           }}
                         >
-                          {message.text}
+                          <Avatar username={username} userId={"chat"} />
+                          <div
+                            style={{
+                              marginLeft: "12px",
+                              width: "calc(100% - 100px)",
+                            }}
+                          >
+                            <div
+                              style={{
+                                color: "white",
+                                fontSize: "15px",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              You
+                            </div>
+                            <div
+                              style={{
+                                color: "white",
+                                fontSize: "13px",
+                                marginTop: "5px",
+                                display: "flex",
+                                flexDirection: "column",
+                                wordBreak: "break-word",
+                              }}
+                            >
+                              {message.text}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  )}
-                  {message.sender === selectedUserId && (
-                    <div style={{ display: "flex" }}>
-                      <Avatar
-                        username={onlinePeopleList[selectedUserId]}
-                        userId={selectedUserId}
-                      />
-                      <div
-                        style={{
-                          marginLeft: "12px",
-                          width: "calc(100% - 100px)",
-                        }}
-                      >
+                      )}
+                      {message.sender === selectedUserId && (
                         <div
                           style={{
-                            color: "white",
-                            fontSize: "15px",
-                            fontWeight: "bold",
+                            display: "flex",
+                            flexDirection: "row",
                           }}
                         >
-                          {onlinePeopleList[selectedUserId]}
+                          <Avatar
+                            username={onlinePeopleList[selectedUserId]}
+                            userId={selectedUserId}
+                          />
+                          <div
+                            style={{
+                              marginLeft: "12px",
+                              width: "calc(100% - 100px)",
+                            }}
+                          >
+                            <div
+                              style={{
+                                color: "white",
+                                fontSize: "15px",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {onlinePeopleList[selectedUserId]}
+                            </div>
+                            <div
+                              style={{
+                                color: "white",
+                                fontSize: "13px",
+                                marginTop: "5px",
+                                display: "flex",
+                                flexDirection: "column",
+                                wordBreak: "break-word",
+                              }}
+                            >
+                              {message.text}
+                            </div>
+                          </div>
                         </div>
-                        <div
-                          style={{
-                            width: "100%",
-                            color: "white",
-                            fontSize: "13px",
-                            marginTop: "5px",
-                          }}
-                        >
-                          {message.text}
-                        </div>
-                        <div ref={messageDiv}></div>
-                      </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {selectedUserId && (
-          <div style={{ height: "100%" }}>
-            <div>
-              <div className="messageInputContainer">
-                <div
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    borderRadius: "25px",
-                    padding: "0px 5px 0px 5px",
-                    backgroundColor: "#44444F",
-                    marginLeft: "5px",
-                  }}
-                >
-                  <input
-                    type="text"
-                    placeholder="message"
-                    className="messageInput"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                  />
-                  <div
-                    style={{
-                      backgroundColor: "#60606e",
-                      borderRadius: "50%",
-                      display: "flex",
-                      height: "30px",
-                      width: "35px",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginRight: "6px",
-                    }}
-                    onClick={sendMessage}
-                  >
-                    <img
-                      src={Send}
-                      width={"25px"}
-                      style={{ marginLeft: "2.5px" }}
-                    />
                   </div>
-                </div>
-                <div className="sendContainer">
-                  <img
-                    src={Attach}
-                    alt=""
-                    width={"32px"}
-                    style={{ marginLeft: "15px" }}
-                  />
-                  <input type="file" style={{ display: "none" }} id="file" />
-                  <label htmlFor="file">
-                    <img
-                      src={Image}
-                      alt=""
-                      width={"22px"}
-                      style={{ marginTop: "4px", marginRight: "10px" }}
-                    />
-                  </label>
-                </div>
+                ))}
+                <div ref={alwaysBottom}></div>
               </div>
             </div>
-          </div>
+          )}
+        </div>
+        {selectedUserId && (
+          <form
+            style={{
+              display: "flex",
+              padding: "0px 10px 10px 10px",
+            }}
+            onSubmit={sendMessage}
+          >
+            <input
+              style={{
+                backgroundColor: "white",
+                width: "90%",
+                flexGrow: "1",
+                padding: "10px",
+                border: "none",
+                borderRadius: "5px",
+                outline: "none",
+              }}
+              type="text"
+              placeholder="Type a message..."
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+            />
+            <button
+              type="submit"
+              style={{
+                marginLeft: "-4px",
+                borderRadius: "0px 5px 5px 0px",
+                border: "none",
+                backgroundColor: "#708090",
+                cursor: "pointer",
+              }}
+            >
+              <img src={Send} width={"25px"} />
+            </button>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <label
+                style={{
+                  display: "flex",
+                  marginLeft: "18px",
+                  marginRight: "10px",
+                }}
+              >
+                <input
+                  type="file"
+                  style={{ visibility: "hidden", display: "none" }}
+                />
+                <img
+                  style={{ cursor: "pointer" }}
+                  src={Attach}
+                  width={"28px"}
+                />
+              </label>
+            </div>
+          </form>
         )}
       </div>
     </div>

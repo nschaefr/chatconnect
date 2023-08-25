@@ -29,7 +29,9 @@ function Avatar({ username, userId }) {
   return (
     <div
       style={{
-        backgroundColor: `${userId === "default" ? "#708090" : randomColor}`,
+        backgroundColor: `${
+          userId === "chat" || userId === "default" ? "#708090" : randomColor
+        }`,
         width: `${userId === "default" ? "45px" : "35px"}`,
         height: `${userId === "default" ? "45px" : "35px"}`,
         display: "flex",
