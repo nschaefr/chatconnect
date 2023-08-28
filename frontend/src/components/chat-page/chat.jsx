@@ -4,6 +4,7 @@ import { UserContext } from "../utils/user-context";
 import logo from "../../assets/icons/logo.svg";
 import Contact from "./contact";
 import { uniqBy } from "lodash";
+import axios from "axios";
 import Image from "../../assets/icons/image.svg";
 import Send from "../../assets/icons/send.svg";
 import Attach from "../../assets/icons/attach.svg";
@@ -19,12 +20,22 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const keyword = useRef(null);
   const alwaysBottom = useRef();
+  const extractedMessages = uniqBy(messages, "_id");
 
   useEffect(() => {
+    connectToWebSocket();
+  }, []);
+
+  function connectToWebSocket() {
     const webSocket = new WebSocket("ws://localhost:4040");
     setWebSocket(webSocket);
     webSocket.addEventListener("message", handleMessage);
-  }, []);
+    webSocket.addEventListener("close", () => {
+      setTimeout(() => {
+        connectToWebSocket();
+      }, 1000);
+    });
+  }
 
   function showOnlinePeople(peopleArray) {
     const people = {};
@@ -55,10 +66,20 @@ function Chat() {
 
   function sendMessage(event) {
     event.preventDefault();
+    const now = new Date();
+
+    const formattedTime = `${("0" + now.getDate()).slice(-2)}.${(
+      "0" +
+      (now.getMonth() + 1)
+    ).slice(-2)}.${now.getFullYear()} ${("0" + now.getHours()).slice(-2)}:${(
+      "0" + now.getMinutes()
+    ).slice(-2)}`;
+
     webSocket.send(
       JSON.stringify({
         recipient: selectedUserId,
         text: newMessage,
+        sentAt: formattedTime,
       })
     );
     setNewMessage("");
@@ -68,7 +89,8 @@ function Chat() {
         text: newMessage,
         sender: id,
         recipient: selectedUserId,
-        id: Date.now(),
+        _id: Date.now(),
+        sentAt: formattedTime,
       },
     ]);
   }
@@ -102,7 +124,13 @@ function Chat() {
     }
   }, [messages]);
 
-  const extractedMessages = uniqBy(messages, "id");
+  useEffect(() => {
+    if (selectedUserId) {
+      axios.get("/messages/" + selectedUserId).then((res) => {
+        setMessages(res.data);
+      });
+    }
+  }, [selectedUserId]);
 
   return (
     <div
@@ -231,15 +259,19 @@ function Chat() {
                 }}
               >
                 {extractedMessages.map((message) => (
-                  <div style={{ padding: "10px 0px 10px 15px" }}>
+                  <div
+                    key={message._id}
+                    style={{ padding: "10px 0px 15px 15px" }}
+                  >
                     <div
                       style={{
                         width: "100%",
                         alignItems: "center",
                       }}
                     >
-                      {message.sender === id && (
+                      {message.sender !== selectedUserId && (
                         <div
+                          key={message._id}
                           style={{
                             display: "flex",
                             flexDirection: "row",
@@ -250,22 +282,37 @@ function Chat() {
                             style={{
                               marginLeft: "12px",
                               width: "calc(100% - 100px)",
+                              marginTop: "-6px",
                             }}
                           >
                             <div
                               style={{
+                                display: "flex",
+                                alignItems: "center",
                                 color: "white",
-                                fontSize: "15px",
-                                fontWeight: "bold",
+                                lineHeight: "0px",
                               }}
                             >
-                              You
+                              <p
+                                style={{ fontSize: "15px", fontWeight: "bold" }}
+                              >
+                                You
+                              </p>
+                              <p
+                                style={{
+                                  fontSize: "10px",
+                                  marginLeft: "6px",
+                                  marginTop: "12px",
+                                  opacity: "50%",
+                                }}
+                              >
+                                {message.sentAt}
+                              </p>
                             </div>
                             <div
                               style={{
                                 color: "white",
                                 fontSize: "13px",
-                                marginTop: "5px",
                                 display: "flex",
                                 flexDirection: "column",
                                 wordBreak: "break-word",
@@ -278,6 +325,7 @@ function Chat() {
                       )}
                       {message.sender === selectedUserId && (
                         <div
+                          key={message._id}
                           style={{
                             display: "flex",
                             flexDirection: "row",
@@ -291,22 +339,37 @@ function Chat() {
                             style={{
                               marginLeft: "12px",
                               width: "calc(100% - 100px)",
+                              marginTop: "-6px",
                             }}
                           >
                             <div
                               style={{
+                                display: "flex",
                                 color: "white",
-                                fontSize: "15px",
-                                fontWeight: "bold",
+                                alignItems: "center",
+                                lineHeight: "0px",
                               }}
                             >
-                              {onlinePeopleList[selectedUserId]}
+                              <p
+                                style={{ fontSize: "15px", fontWeight: "bold" }}
+                              >
+                                {onlinePeopleList[selectedUserId]}
+                              </p>
+                              <p
+                                style={{
+                                  fontSize: "10px",
+                                  marginLeft: "6px",
+                                  marginTop: "12px",
+                                  opacity: "50%",
+                                }}
+                              >
+                                {message.sentAt}
+                              </p>
                             </div>
                             <div
                               style={{
                                 color: "white",
                                 fontSize: "13px",
-                                marginTop: "5px",
                                 display: "flex",
                                 flexDirection: "column",
                                 wordBreak: "break-word",
@@ -320,7 +383,7 @@ function Chat() {
                     </div>
                   </div>
                 ))}
-                <div ref={alwaysBottom}></div>
+                <div style={{ height: "12px" }} ref={alwaysBottom}></div>
               </div>
             </div>
           )}
