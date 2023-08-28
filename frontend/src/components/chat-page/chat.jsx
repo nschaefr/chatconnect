@@ -24,7 +24,7 @@ function Chat() {
 
   useEffect(() => {
     connectToWebSocket();
-  }, []);
+  }, [selectedUserId]);
 
   function connectToWebSocket() {
     const webSocket = new WebSocket("ws://localhost:4040");
@@ -60,7 +60,8 @@ function Chat() {
     if ("online" in messageData) {
       showOnlinePeople(messageData.online);
     } else if ("text" in messageData) {
-      setMessages((prev) => [...prev, { ...messageData }]);
+      if (messageData.sender === selectedUserId)
+        setMessages((prev) => [...prev, { ...messageData }]);
     }
   }
 
