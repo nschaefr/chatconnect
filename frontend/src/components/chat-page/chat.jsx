@@ -96,6 +96,14 @@ function Chat() {
     ]);
   }
 
+  function logout() {
+    axios.post("/logout").then(() => {
+      setId(null);
+      setLoggedInUsername(null);
+    });
+    console.log("terst");
+  }
+
   function filterbyKeyword() {
     const keywordValue = keyword.current.value;
 
@@ -214,7 +222,12 @@ function Chat() {
             marginBottom: "20px",
           }}
         >
-          <img src={Logout} width={"30px"} style={{ cursor: "pointer" }} />
+          <img
+            onClick={logout}
+            src={Logout}
+            width={"30px"}
+            style={{ cursor: "pointer" }}
+          />
         </div>
       </div>
       <div

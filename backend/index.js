@@ -115,10 +115,13 @@ app.post("/login", async (req, res) => {
           if (err) {
             throw err;
           } else {
-            res.cookie("token", token).status(200).json({
-              id: foundUser._id,
-              valid: true,
-            });
+            res
+              .cookie("token", token, { sameSite: "none", secure: true })
+              .status(200)
+              .json({
+                id: foundUser._id,
+                valid: true,
+              });
           }
         }
       );
@@ -128,6 +131,10 @@ app.post("/login", async (req, res) => {
   } else {
     res.json({ valid: false });
   }
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "", { sameSite: "none", secure: true }).json();
 });
 
 /**
