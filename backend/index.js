@@ -41,6 +41,20 @@ app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 mongoose.connect(process.env.MONGO_URL);
 
+async function getUserDataFromRequest(req) {
+  return new Promise((resolve, reject) => {
+    const token = req.cookies?.token;
+    if (token) {
+      jsonWebToken.verify(token, jsonWebTokenSecret, {}, (err, userData) => {
+        if (err) throw err;
+        resolve(userData);
+      });
+    } else {
+      reject("no token");
+    }
+  });
+}
+
 // Routes
 
 /**
@@ -101,10 +115,13 @@ app.post("/login", async (req, res) => {
           if (err) {
             throw err;
           } else {
-            res.cookie("token", token).status(200).json({
-              id: foundUser._id,
-              valid: true,
-            });
+            res
+              .cookie("token", token, { sameSite: "none", secure: true })
+              .status(200)
+              .json({
+                id: foundUser._id,
+                valid: true,
+              });
           }
         }
       );
@@ -114,6 +131,10 @@ app.post("/login", async (req, res) => {
   } else {
     res.json({ valid: false });
   }
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "", { sameSite: "none", secure: true }).json();
 });
 
 /**
@@ -169,6 +190,17 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+app.get("/messages/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const userData = await getUserDataFromRequest(req);
+  const ourUserId = userData.userId;
+  const messages = await Message.find({
+    sender: { $in: [userId, ourUserId] },
+    recipient: { $in: [userId, ourUserId] },
+  }).sort({ createdAt: 1 });
+  res.json(messages);
+});
+
 const server = app.listen(4040, "localhost");
 const webSocketServer = new webSocket.WebSocketServer({ server });
 
@@ -193,12 +225,13 @@ webSocketServer.on("connection", (connection, req) => {
 
   connection.on("message", async (message) => {
     const messageData = JSON.parse(message.toString());
-    const { recipient, text } = messageData;
+    const { recipient, text, sentAt } = messageData;
     if (recipient && text) {
       const messageDocument = await Message.create({
         sender: connection.userId,
         recipient,
         text,
+        sentAt,
       });
       [...webSocketServer.clients]
         .filter((client) => client.userId === recipient)
@@ -207,8 +240,11 @@ webSocketServer.on("connection", (connection, req) => {
             JSON.stringify({
               text,
               sender: connection.userId,
+
               recipient,
-              id: messageDocument._id,
+              _id: messageDocument._id,
+
+              sentAt,
             })
           )
         );
