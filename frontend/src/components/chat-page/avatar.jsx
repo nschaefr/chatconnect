@@ -1,11 +1,11 @@
 function Avatar({ username, userId }) {
   const colors = [
-    "#b9cff0",
-    "#a6bcdd",
-    "#739bd4",
-    "#4277c3",
-    "#00214f",
-    "#a5def2",
+    "#B9CFF0",
+    "#A6BCDD",
+    "#739BD4",
+    "#4277C3",
+    "#00214F",
+    "#A5DEF2",
   ];
 
   function hashCode(str) {
@@ -43,7 +43,7 @@ function Avatar({ username, userId }) {
       <div
         style={{
           opacity: "75%",
-          fontWeight: "bold",
+          fontFamily: "ExtraBold",
           color: "white",
           fontSize: `${userId === "default" ? "22px" : "15px"}`,
         }}

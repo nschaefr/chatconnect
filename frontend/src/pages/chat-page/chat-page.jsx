@@ -1,5 +1,5 @@
 import Chat from "../../components/chat-page/chat";
-import "./chat-page.css";
+import "./styles.css";
 
 function ChatPage() {
   return (

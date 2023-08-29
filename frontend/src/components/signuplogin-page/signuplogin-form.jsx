@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import "./signuplogin-form.css";
+import "./styles.css";
 import axios from "axios";
 import { UserContext } from "../utils/user-context";
 
@@ -87,7 +87,7 @@ function SignuploginForm() {
           type="name"
           ref={usernameIn}
           onChange={(ev) => validateUsername(ev.target.value)}
-          className="input2"
+          className="input"
           placeholder="Username"
         />
         <br />

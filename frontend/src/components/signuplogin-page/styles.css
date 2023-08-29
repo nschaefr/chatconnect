@@ -1,42 +1,24 @@
+@media only screen and (max-width: 600px) {
 .form {
   height: fit-content;
-  width: fit-content;
+  width: 70%;
 }
-
+}
 .header {
   color: white;
   font-size: 38px;
-  line-height: 0.25;
-  font-family: "SemiBold", serif;
+  font-family: "SemiBold";
+  margin-bottom: 20px;
 }
-
 .slogan {
   color: white;
   font-size: 18px;
-  line-height: 0.25;
   margin-bottom: 30px;
-  font-family: "Regular", serif;
+  font-family: "Medium";
+  margin-bottom: 20px;
 }
-
 .input {
-  width: 89%;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  background-image: url("../../assets/icons/mail.svg");
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: 10px;
-  padding: 8px 8px 8px 40px;
-  font-family: "Regular", serif;
-}
-
-.input:focus{
-  outline: none;
-}
-
-.input2 {
-  width: 89%;
+  width: calc(100% - 50px);
   border-radius: 4px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -45,15 +27,13 @@
   background-repeat: no-repeat;
   background-position: 10px;
   padding: 8px 8px 8px 40px;
-  font-family: "Regular", serif;
+  font-family: "Medium";
 }
-
-.input2:focus{
+.input:focus{
   outline: none;
 }
-
 .pwd {
-  width: 89%;
+  width: calc(100% - 50px);
   border-radius: 4px;
   font-size: 14px;
   background-image: url("../../assets/icons/lock.svg");
@@ -61,36 +41,31 @@
   background-repeat: no-repeat;
   background-position: 11px;
   padding: 8px 8px 8px 40px;
-  font-family: "Regular", serif;
+  font-family: "Medium";
 }
-
 .pwd:focus{
   outline: none;
 }
-
 .decision {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 15px;
 }
-
 .text {
   color: white;
   font-size: 14px;
   line-height: 0;
-  font-family: "Regular", serif;
+  font-family: "Medium";
 }
-
 .invalid {
   display: flex;
   align-content: center;
   color: #fa442f;
   font-size: 12px;
   line-height: 0;
-  font-family: "Medium", serif;
+  font-family: "Medium";
 }
-
 .btn {
   color: white;
   text-decoration: underline;
@@ -98,10 +73,9 @@
   line-height: 0.25;
   margin-top: 13px;
   margin-bottom: 25px;
-  font-family: "SemiBold", serif;
+  font-family: "SemiBold";
   cursor: pointer;
 }
-
 .btn2 {
   background-color: rgb(90, 92, 106);
   width: fit-content;
@@ -110,12 +84,11 @@
   border-radius: 5px;
   margin-top: 5px;
   cursor: pointer;
+  font-family: "SemiBold";
 }
-
 .btn2:hover {
   background-color: rgb(32, 45, 58);
 }
-
 .text2 {
   padding-left: 10px;
   padding-right: 10px;
@@ -123,5 +96,5 @@
   color: white;
   font-size: 14px;
   line-height: 0.4;
-  font-family: "Medium", serif;
+  font-family: "SemiBold";
 }

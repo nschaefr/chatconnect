@@ -1,8 +1,10 @@
 import Avatar from "./avatar";
+import "./styles.css";
 
-function Contact({ id, username, onClick, selected, online }) {
+function Contact({ id, username, onClick, selected }) {
   return (
     <div
+      className="contactDiv"
       key={id}
       onClick={() => onClick(id)}
       style={{
@@ -16,23 +18,13 @@ function Contact({ id, username, onClick, selected, online }) {
         backgroundColor: `${selected ? "#44444F" : "#31313A"}`,
       }}
     >
-      {selected && (
-        <div
-          style={{
-            position: "absolute",
-            left: "0",
-            width: "3px",
-            height: "55px",
-            backgroundColor: "#FFFFFF",
-          }}
-        ></div>
-      )}
+      {selected && <div className="contactSelector"></div>}
       <Avatar username={username} userId={id} />
-      <div className="chatInfo">
+      <div className="contactNameDiv">
         <span
           style={{
             fontSize: "15px",
-            fontWeight: "bold",
+            fontFamily: "SemiBold",
             opacity: `${selected ? "100%" : "50%"}`,
           }}
         >
