@@ -1,36 +1,39 @@
 import Avatar from "./avatar";
 import "./styles.css";
 
-function Contact({ id, username, onClick, selected }) {
+function Contact({ id, username, onClick, selected, screen }) {
   return (
     <div
       className="contactDiv"
       key={id}
       onClick={() => onClick(id)}
       style={{
-        padding: "10px 20px 10px 20px",
+        padding: `${screen === "mobile" ? "15px" : "10px 0px 10px 20px"}`,
         display: "flex",
-        width: "100%",
         alignItems: "center",
         color: "white",
         gap: "10px",
+        marginLeft: `${screen === "mobile" ? "5px" : "15px"}`,
+        marginRight: `${screen === "mobile" ? "5px" : "15px"}`,
         cursor: "pointer",
-        backgroundColor: `${selected ? "#44444F" : "#31313A"}`,
+        borderRadius: "3px",
+        backgroundColor: `${selected ? "#3c3c50" : "#28283c"}`,
       }}
     >
-      {selected && <div className="contactSelector"></div>}
       <Avatar username={username} userId={id} />
-      <div className="contactNameDiv">
-        <span
-          style={{
-            fontSize: "15px",
-            fontFamily: "SemiBold",
-            opacity: `${selected ? "100%" : "50%"}`,
-          }}
-        >
-          {username}
-        </span>
-      </div>
+      {screen !== "mobile" && (
+        <div className="contactNameDiv">
+          <span
+            style={{
+              fontSize: "15px",
+              fontFamily: "SemiBold",
+              opacity: `${selected ? "100%" : "50%"}`,
+            }}
+          >
+            {screen === "mobile" ? "" : username}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

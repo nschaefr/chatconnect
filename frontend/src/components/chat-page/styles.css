@@ -1,10 +1,10 @@
 /* contact.jsx */
 .contactDiv:hover {
-    background-color: #44444F;
+    background-color: #3C3C3C;
 }
 .contactSelector {
     position: absolute;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     left: 0;
     width: 3px;
     height: 55px;
@@ -20,37 +20,40 @@
 .sidebarDiv {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    background-color: #31313A;
+    width: 300px;
+    background-color: #28283C;
+}
+.sidebarDiv2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+    background-color: #28283C;
+}
+.sidebarDiv3 {
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+    background-color: #28283C;
 }
 .informationDiv {
     flex-grow: 1;
 }
-.userInformation {
+.logoDiv {
     display: flex;
-    gap: 12px;
-    padding: 25px 10px 5px 20px;
+    padding: 20px 20px 0px 20px;
+    margin-bottom: -15px;
+    gap: 10px;
+    flex-direction: row;
 }
-.usernameInformationDiv {
-    display: flex;
-}
-.usernameInformation {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    line-height: 8px;
+.appName {
     color: #FFFFFF;
-}
-.username {
-    font-family: "ExtraBold";
     font-size: 20px;
-}
-.paragraph {
-    font-size: 12px;
-    font-family: "Medium";
+    font-family: "SemiBold";
 }
 .searchBarDiv {
     padding: 25px 10px 15px 20px;
+    margin-right: 9px;
 }
 .searchBar {
     background-color: #FFFFFF;
@@ -61,19 +64,57 @@
     outline: none;
     width: 88%;
 }
+.bottomDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.userInformation {
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+    margin-left: 20px;
+    gap: 10px;
+}
+.usernameInformationDiv {
+    display: flex;
+}
+.usernameInformation {
+    display: flex;
+    flex-direction: column;
+    line-height: 8px;
+    color: #FFFFFF;
+}
+.username {
+    font-family: "Medium";
+    font-size: 15px;
+}
 .logoutDiv {
     display: flex;
     height: fit-content;
     width: fit-content;
     margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 20px;
+    cursor: pointer;
+}
+.mobileDiv {
+    display: flex;
+}
+.menuDiv {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.menuIcon {
+    margin-bottom: 10px;
     cursor: pointer;
 }
 .chattingDiv {
     display: flex;
     flex-direction: column;
-    width: 70%;
-    background-color: #44444F;
+    width: 100%;
+    background-color: #3C3C50;
 }
 .contentAreaDiv {
     flex-grow: 1;
@@ -82,6 +123,7 @@
     height: 100%;
     display: flex;
     flex-grow: 1;
+    padding: 20px;
     align-items: center;
     justify-content: center;
     color: #FFFFFF;
@@ -149,6 +191,7 @@
 .sendMessageForm {
     display: flex;
     padding: 0px 10px 15px 15px;
+    background-color: #3C3C50;
 }
 .sendMessageInput {
     background-color: #FFFFFF;
@@ -163,11 +206,11 @@
     margin-left: -4px;
     border-radius: 0px 5px 5px 0px;
     border: none;
-    background-color: #708090;
+    background-color: #323246;
     cursor: pointer;
 }
 .sendMessageButton:hover {
-    background-color: #5b6875;
+    background-color: #28283C;
 }
 .attachDiv {
     display: flex;

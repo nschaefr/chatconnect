@@ -8,6 +8,9 @@ import axios from "axios";
 import Send from "../../assets/icons/send.svg";
 import Attach from "../../assets/icons/attach.svg";
 import Logout from "../../assets/icons/logout.svg";
+import Logo from "../../assets/icons/logo.svg";
+import Menu from "../../assets/icons/menu.svg";
+import Close from "../../assets/icons/close.svg";
 
 function Chat() {
   const [webSocket, setWebSocket] = useState(null);
@@ -20,10 +23,16 @@ function Chat() {
   const keyword = useRef(null);
   const alwaysBottom = useRef();
   const extractedMessages = uniqBy(messages, "_id");
+  const [mobile, setMobile] = useState();
+  const [toggle, setToggle] = useState(false);
 
-  useEffect(() => {
-    connectToWebSocket();
-  }, [selectedUserId]);
+  const handleResize = () => {
+    if (window.innerWidth <= 600) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
 
   function connectToWebSocket() {
     const webSocket = new WebSocket("ws://localhost:4040");
@@ -102,7 +111,6 @@ function Chat() {
       setId(null);
       setLoggedInUsername(null);
     });
-    console.log("terst");
   }
 
   function filterbyKeyword() {
@@ -128,6 +136,11 @@ function Chat() {
   }
 
   useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+  });
+
+  useEffect(() => {
     const container = alwaysBottom.current;
     if (container) {
       container.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -135,55 +148,159 @@ function Chat() {
   }, [messages]);
 
   useEffect(() => {
+    connectToWebSocket();
     if (selectedUserId) {
       axios.get("/messages/" + selectedUserId).then((res) => {
         setMessages(res.data);
       });
-      keyword.current.value = "";
+      if (!mobile) keyword.current.value = "";
     }
+    if (mobile) setToggle(false);
   }, [selectedUserId]);
 
   return (
     <div className="chatDiv">
-      <div className="sidebarDiv">
-        <div className="informationDiv">
-          <div className="userInformation">
-            <Avatar username={username} userId="default" />
-            <div className="usernameInformationDiv">
-              <div className="usernameInformation">
-                <span className="username">{username}</span>
-                <p className="paragraph">logged in</p>
-              </div>
+      {!mobile && (
+        <div className="sidebarDiv">
+          <div className="informationDiv">
+            <div className="logoDiv">
+              <img src={Logo} width={"35px"} />
+              <p className="appName">chatconnect</p>
+            </div>
+            <div className="searchBarDiv">
+              <input
+                className="searchBar"
+                ref={keyword}
+                onChange={filterbyKeyword}
+                placeholder="Find contacts..."
+              />
+            </div>
+            <div>
+              {Object.keys(onlinePeopleList).map((userId) => (
+                <Contact
+                  key={userId}
+                  id={userId}
+                  online={true}
+                  username={onlinePeopleList[userId]}
+                  onClick={() => {
+                    setSelectedUserId(userId);
+                    setNewMessage("");
+                  }}
+                  selected={userId === selectedUserId}
+                />
+              ))}
             </div>
           </div>
-          <div className="searchBarDiv">
-            <input
-              className="searchBar"
-              ref={keyword}
-              onChange={filterbyKeyword}
-              placeholder="Find contacts..."
-            />
-          </div>
-          <div>
-            {Object.keys(onlinePeopleList).map((userId) => (
-              <Contact
-                key={userId}
-                id={userId}
-                online={true}
-                username={onlinePeopleList[userId]}
-                onClick={() => {
-                  setSelectedUserId(userId);
-                  setNewMessage("");
-                }}
-                selected={userId === selectedUserId}
-              />
-            ))}
+          <div className="bottomDiv">
+            <div className="userInformation">
+              <Avatar username={username} userId="default" />
+              <div className="usernameInformationDiv">
+                <div className="usernameInformation">
+                  <span className="username">{username}</span>
+                </div>
+              </div>
+            </div>
+            <div className="logoutDiv">
+              <img onClick={logout} src={Logout} width={"30px"} />
+            </div>
           </div>
         </div>
-        <div className="logoutDiv">
-          <img onClick={logout} src={Logout} width={"30px"} />
+      )}
+      {mobile && (
+        <div className="mobileDiv">
+          {!toggle && (
+            <div className="sidebarDiv2">
+              <div className="informationDiv">
+                <div className="menuDiv">
+                  <img
+                    className="menuIcon"
+                    src={Menu}
+                    width={"30px"}
+                    onClick={() => {
+                      setToggle(true);
+                    }}
+                  />
+                </div>
+                <div>
+                  {Object.keys(onlinePeopleList).map((userId) => (
+                    <Contact
+                      key={userId}
+                      id={userId}
+                      online={true}
+                      username={onlinePeopleList[userId]}
+                      onClick={() => {
+                        setSelectedUserId(userId);
+                        setNewMessage("");
+                      }}
+                      selected={userId === selectedUserId}
+                      screen="mobile"
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="bottomDiv">
+                <div className="logoutDiv">
+                  <img onClick={logout} src={Logout} width={"30px"} />
+                </div>
+              </div>
+            </div>
+          )}
+          {toggle && (
+            <div className="sidebarDiv3">
+              <div className="informationDiv">
+                <div className="logoDiv">
+                  <div>
+                    <img
+                      className="menuIcon"
+                      src={Close}
+                      width={"30px"}
+                      onClick={() => {
+                        setToggle(false);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="searchBarDiv">
+                  <input
+                    className="searchBar"
+                    ref={keyword}
+                    onChange={filterbyKeyword}
+                    placeholder="Find contacts..."
+                  />
+                </div>
+                <div>
+                  {Object.keys(onlinePeopleList).map((userId) => (
+                    <Contact
+                      key={userId}
+                      id={userId}
+                      online={true}
+                      username={onlinePeopleList[userId]}
+                      onClick={() => {
+                        setSelectedUserId(userId);
+                        setNewMessage("");
+                      }}
+                      selected={userId === selectedUserId}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="bottomDiv">
+                <div className="userInformation">
+                  <Avatar username={username} userId="default" />
+                  <div className="usernameInformationDiv">
+                    <div className="usernameInformation">
+                      <span className="username">{username}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="logoutDiv">
+                  <img onClick={logout} src={Logout} width={"30px"} />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      )}
       <div className="chattingDiv">
         <div className="contentAreaDiv">
           {!selectedUserId && (

@@ -1,33 +1,46 @@
-@media only screen and (max-width: 600px) {
 .form {
+  padding: 30px 30px 25px 30px;
   height: fit-content;
-  width: 70%;
+  width: 350px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 3px;
+  background-color: #3C3C50;
 }
+.headerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -10px;
 }
 .header {
-  color: white;
-  font-size: 38px;
+  color: #FFFFFF;
+  font-size: 37px;
   font-family: "SemiBold";
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  margin-left: 8px;
 }
 .slogan {
-  color: white;
+  color: #FFFFFF;
   font-size: 18px;
-  margin-bottom: 30px;
-  font-family: "Medium";
+  text-align: center;
+  margin-top: 0px;
   margin-bottom: 20px;
+  font-family: "Medium";
 }
 .input {
   width: calc(100% - 50px);
   border-radius: 4px;
   margin-bottom: 10px;
   font-size: 14px;
+  border: none;
   background-image: url("../../assets/icons/person.svg");
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 10px;
   padding: 8px 8px 8px 40px;
-  color: rgb(32, 45, 58);
+  color: #282828;
   font-family: "Medium";
 }
 .input:focus{
@@ -36,13 +49,14 @@
 .pwd {
   width: calc(100% - 50px);
   border-radius: 4px;
+  border: none;
   font-size: 14px;
   background-image: url("../../assets/icons/lock.svg");
   background-size: 18px;
   background-repeat: no-repeat;
   background-position: 11px;
   padding: 8px 8px 8px 40px;
-  color: rgb(32, 45, 58);
+  color: #282828;
   font-family: "Medium";
 }
 .pwd:focus{
@@ -52,10 +66,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 40px;
 }
 .text {
-  color: white;
+  color: #FFFFFF;
   font-size: 14px;
   line-height: 0;
   font-family: "Medium";
@@ -63,39 +77,39 @@
 .invalid {
   display: flex;
   align-content: center;
-  color: #fa442f;
+  color: #FA442F;
   font-size: 12px;
   line-height: 0;
   font-family: "Medium";
 }
 .btn {
-  color: white;
+  color: #FFFFFF;
   text-decoration: underline;
   font-size: 14px;
   line-height: 0.25;
-  margin-top: 13px;
+  margin-top: 15px;
   margin-bottom: 25px;
   font-family: "SemiBold";
   cursor: pointer;
 }
 .btn2 {
-  background-color: rgb(90, 92, 106);
+  background-color: #73B6A5;
   width: fit-content;
   height: fit-content;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-top: 5px;
   cursor: pointer;
   font-family: "SemiBold";
 }
 .btn2:hover {
-  background-color: rgb(32, 45, 58);
+  background-color: #65A192;
 }
 .text2 {
   padding-left: 10px;
   padding-right: 10px;
   width: fit-content;
-  color: white;
+  color: #FFFFFF;
   font-size: 14px;
   line-height: 0.4;
   font-family: "SemiBold";
