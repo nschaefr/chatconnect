@@ -1,7 +1,8 @@
 import React, { useContext, useState, useRef } from "react";
-import "./signuplogin-form.css";
-import axios from "axios";
 import { UserContext } from "../utils/user-context";
+import "./styles.css";
+import axios from "axios";
+import Logo from "../../assets/icons/logo.svg";
 
 function SignuploginForm() {
   const [username, setUsername] = useState("");
@@ -62,13 +63,12 @@ function SignuploginForm() {
 
   return (
     <div className="form">
-      <p className="header">Welcome to ChatConnect!</p>
-      {form === "login" && (
-        <p className="slogan">Log in to your ChatConnect Account.</p>
-      )}
-      {form === "signup" && (
-        <p className="slogan">Sign up for chatting with your friends.</p>
-      )}
+      <div className="headerDiv">
+        <img src={Logo} width={"40px"} />
+        <p className="header">chatconnect</p>
+      </div>
+      {form === "login" && <p className="slogan">Sign In</p>}
+      {form === "signup" && <p className="slogan">Sign Up</p>}
       <form>
         {isValidUsername === false && form === "signup" && (
           <p className="invalid">
@@ -87,7 +87,7 @@ function SignuploginForm() {
           type="name"
           ref={usernameIn}
           onChange={(ev) => validateUsername(ev.target.value)}
-          className="input2"
+          className="input"
           placeholder="Username"
         />
         <br />
@@ -107,7 +107,7 @@ function SignuploginForm() {
       <div className="decision">
         {form === "login" && (
           <div>
-            <p className="text">You don't have an account?</p>
+            <p className="text">You haven't signed up yet?</p>
             <p
               className="btn"
               onClick={() => {
@@ -120,7 +120,7 @@ function SignuploginForm() {
                 passwordIn.current.value = "";
               }}
             >
-              Sign up now
+              Create an account
             </p>
           </div>
         )}
@@ -153,7 +153,7 @@ function SignuploginForm() {
             }
           }}
         >
-          <p className="text2">{form === "signup" ? "Sign up" : "Log In"}</p>
+          <p className="text2">{form === "signup" ? "Sign Up" : "Log In"}</p>
         </div>
       </div>
     </div>

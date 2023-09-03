@@ -1,12 +1,5 @@
 function Avatar({ username, userId }) {
-  const colors = [
-    "#b9cff0",
-    "#a6bcdd",
-    "#739bd4",
-    "#4277c3",
-    "#00214f",
-    "#a5def2",
-  ];
+  const colors = ["#339E92", "#66B6AD", "#99CFC9", "#008677"];
 
   function hashCode(str) {
     let hash = 0;
@@ -30,10 +23,10 @@ function Avatar({ username, userId }) {
     <div
       style={{
         backgroundColor: `${
-          userId === "chat" || userId === "default" ? "#708090" : randomColor
+          userId === "chat" || userId === "default" ? "#73b6A5" : randomColor
         }`,
-        width: `${userId === "default" ? "45px" : "35px"}`,
-        height: `${userId === "default" ? "45px" : "35px"}`,
+        width: `${userId === "default" ? "30px" : "35px"}`,
+        height: `${userId === "default" ? "30px" : "35px"}`,
         display: "flex",
         borderRadius: "50%",
         alignItems: "center",
@@ -43,9 +36,9 @@ function Avatar({ username, userId }) {
       <div
         style={{
           opacity: "75%",
-          fontWeight: "bold",
+          fontFamily: "ExtraBold",
           color: "white",
-          fontSize: `${userId === "default" ? "22px" : "15px"}`,
+          fontSize: `${userId === "default" ? "13px" : "15px"}`,
         }}
       >
         {shortName}
