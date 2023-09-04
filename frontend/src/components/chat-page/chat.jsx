@@ -357,12 +357,6 @@ function Chat() {
             <button className="sendMessageButton" type="submit">
               <img src={Send} width={"25px"} />
             </button>
-            <div className="attachDiv">
-              <label className="attachLabel">
-                <input className="attachInput" type="file" />
-                <img className="attachIcon" src={Attach} width={"28px"} />
-              </label>
-            </div>
           </form>
         )}
       </div>

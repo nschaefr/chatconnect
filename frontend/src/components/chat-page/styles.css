@@ -212,17 +212,3 @@
 .sendMessageButton:hover {
     background-color: #28283C;
 }
-.attachDiv {
-    display: flex;
-    align-items: center;
-}
-.attachLabel {
-    display: flex;
-    margin-left: 18px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-.attachInput {
-    visibility: hidden;
-    display: none;
-}
