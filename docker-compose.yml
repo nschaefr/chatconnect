@@ -9,7 +9,7 @@ services:
     container_name: chatconnect-node-server
     command: /usr/src/app/node_modules/.bin/nodemon server.js
     volumes:
-      - ./backend/:/usr/src/app
+      - ./backend:/app/backend
       - /usr/src/app/node_modules
     ports:
       - "4040:4040"
@@ -24,7 +24,7 @@ services:
     container_name: chatconnect-react-frontend
     command: npm start
     volumes:
-      - ./frontend/:/usr/app
+      - ./frontend/src:/app/frontend/src
       - /usr/app/node_modules
     ports:
       - "3000:3000"
