@@ -75,9 +75,10 @@ function SignuploginForm() {
             {form === "signup" && <span>Username cannot be empty.</span>}
           </p>
         )}
-        {form === "login" && isValidAccount === false && (
-          <p className="invalid">Incorrect username or password.</p>
-        )}
+        {form === "login" &&
+          (isValidAccount === false || isValidUsername === false) && (
+            <p className="invalid">Incorrect username or password.</p>
+          )}
         {isDupeUsername === true &&
           isValidUsername === true &&
           form === "signup" && (
@@ -102,6 +103,15 @@ function SignuploginForm() {
           onChange={(ev) => validatePassword(ev.target.value)}
           className="pwd"
           placeholder="Password"
+          onKeyDown={(ev) => {
+            if (ev.key === "Enter" && isValidPassword) {
+              if (isValidUsername) {
+                submitHandler();
+              } else {
+                setUsernameValidation(false);
+              }
+            }
+          }}
         />
       </form>
       <div className="decision">
@@ -149,6 +159,8 @@ function SignuploginForm() {
             if (isValidPassword) {
               if (isValidUsername) {
                 void submitHandler();
+              } else {
+                setUsernameValidation(false);
               }
             }
           }}
