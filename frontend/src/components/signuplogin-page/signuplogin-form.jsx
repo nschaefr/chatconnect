@@ -119,6 +119,7 @@ function SignuploginForm() {
           <div>
             <p className="text">You haven't signed up yet?</p>
             <p
+              data-testid="create-account"
               className="btn"
               onClick={() => {
                 setForm("signup");
@@ -138,6 +139,7 @@ function SignuploginForm() {
           <div>
             <p className="text">Already have an account?</p>
             <p
+              data-testid="login-now"
               className="btn"
               onClick={() => {
                 setForm("login");

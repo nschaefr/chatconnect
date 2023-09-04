@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering signuploginform 1`] = `
+<div
+  className="form"
+>
+  <div
+    className="headerDiv"
+  >
+    <img
+      src={{}}
+      width="40px"
+    />
+    <p
+      className="header"
+    >
+      chatconnect
+    </p>
+  </div>
+  <p
+    className="slogan"
+  >
+    Sign In
+  </p>
+  <form>
+    <input
+      className="input"
+      onChange={[Function]}
+      placeholder="Username"
+      type="name"
+    />
+    <br />
+    <input
+      className="pwd"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Password"
+      type="password"
+    />
+  </form>
+  <div
+    className="decision"
+  >
+    <div>
+      <p
+        className="text"
+      >
+        You haven't signed up yet?
+      </p>
+      <p
+        className="btn"
+        data-testid="create-account"
+        onClick={[Function]}
+      >
+        Create an account
+      </p>
+    </div>
+    <div
+      className="btn2"
+      onClick={[Function]}
+    >
+      <p
+        className="text2"
+      >
+        Log In
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`rendering signuploginform-page 1`] = `
+<div
+  className="form"
+>
+  <div
+    className="headerDiv"
+  >
+    <img
+      src={{}}
+      width="40px"
+    />
+    <p
+      className="header"
+    >
+      chatconnect
+    </p>
+  </div>
+  <p
+    className="slogan"
+  >
+    Sign In
+  </p>
+  <form>
+    <input
+      className="input"
+      onChange={[Function]}
+      placeholder="Username"
+      type="name"
+    />
+    <br />
+    <input
+      className="pwd"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Password"
+      type="password"
+    />
+  </form>
+  <div
+    className="decision"
+  >
+    <div>
+      <p
+        className="text"
+      >
+        You haven't signed up yet?
+      </p>
+      <p
+        className="btn"
+        onClick={[Function]}
+      >
+        Create an account
+      </p>
+    </div>
+    <div
+      className="btn2"
+      onClick={[Function]}
+    >
+      <p
+        className="text2"
+      >
+        Log In
+      </p>
+    </div>
+  </div>
+</div>
+`;
