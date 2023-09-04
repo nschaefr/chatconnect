@@ -6,7 +6,6 @@ import Avatar from "./avatar";
 import Contact from "./contact";
 import axios from "axios";
 import Send from "../../assets/icons/send.svg";
-import Attach from "../../assets/icons/attach.svg";
 import Logout from "../../assets/icons/logout.svg";
 import Logo from "../../assets/icons/logo.svg";
 import Menu from "../../assets/icons/menu.svg";

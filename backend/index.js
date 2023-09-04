@@ -201,7 +201,7 @@ app.get("/messages/:userId", async (req, res) => {
   res.json(messages);
 });
 
-const server = app.listen(4040, "localhost");
+const server = app.listen(4040, "0.0.0.0");
 const webSocketServer = new webSocket.WebSocketServer({ server });
 
 webSocketServer.on("connection", (connection, req) => {

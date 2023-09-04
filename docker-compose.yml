@@ -1,13 +1,30 @@
-version: "3.8"
+version: "3.7"
 
 services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: chatconnect-backend
+    container_name: chatconnect-node-server
+    command: /usr/src/app/node_modules/.bin/nodemon server.js
+    volumes:
+      - ./backend/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4040:4040"
+    env_file: ./backend/.env
+    environment:
+      - NODE_ENV=development
   frontend:
-    container_name: frontend
-    build: ./frontend
-    volumes: 
-      - ./frontend/src:/app/src
-    ports: 
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: chatconnect-frontend
+    container_name: chatconnect-react-frontend
+    command: npm start
+    volumes:
+      - ./frontend/:/usr/app
+      - /usr/app/node_modules
+    ports:
       - "3000:3000"
-# backend:
-# database:
-
