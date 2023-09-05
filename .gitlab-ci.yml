@@ -4,14 +4,29 @@ stages:
   - build
   - test
 
-docker_build:
+backend_build:
   stage: build
   script:
     - cd ./backend
     - npm install
+
+frontend_build:
+  stage: build
+  script:
     - cd ../frontend
     - npm install
-    - docker-compose up
+
+backend_run:
+  stage: run
+  script:
+    - cd ./backend
+    - nodemon index.js
+
+frontend_run:
+  stage: run
+  script:
+    - cd ./frontend
+    - npm start
 
 backend_test:
   stage: test
