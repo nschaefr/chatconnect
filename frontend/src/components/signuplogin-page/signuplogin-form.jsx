@@ -72,19 +72,28 @@ function SignuploginForm() {
       <form>
         {isValidUsername === false && form === "signup" && (
           <p className="invalid">
-            {form === "signup" && <span>Username cannot be empty.</span>}
+            {form === "signup" && (
+              <span data-testid="cannot-be-empty-error">
+                Username cannot be empty.
+              </span>
+            )}
           </p>
         )}
         {form === "login" &&
           (isValidAccount === false || isValidUsername === false) && (
-            <p className="invalid">Incorrect username or password.</p>
+            <p data-testid="invalid-data-error" className="invalid">
+              Incorrect username or password.
+            </p>
           )}
         {isDupeUsername === true &&
           isValidUsername === true &&
           form === "signup" && (
-            <p className="invalid">Username already exists.</p>
+            <p data-testid="already-exists-error" className="invalid">
+              Username already exists.
+            </p>
           )}
         <input
+          data-testid="username-input"
           type="name"
           ref={usernameIn}
           onChange={(ev) => validateUsername(ev.target.value)}
@@ -93,11 +102,12 @@ function SignuploginForm() {
         />
         <br />
         {isValidPassword === false && (
-          <p className="invalid">
+          <p data-testid="password-error" className="invalid">
             Your password should have at least 8 characters.
           </p>
         )}
         <input
+          data-testid="password-input"
           type="password"
           ref={passwordIn}
           onChange={(ev) => validatePassword(ev.target.value)}
@@ -167,7 +177,9 @@ function SignuploginForm() {
             }
           }}
         >
-          <p className="text2">{form === "signup" ? "Sign Up" : "Log In"}</p>
+          <p data-testid="submit-button" className="text2">
+            {form === "signup" ? "Sign Up" : "Log In"}
+          </p>
         </div>
       </div>
     </div>
