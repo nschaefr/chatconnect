@@ -1,32 +1,21 @@
 image: node:14
 
 stages:
-  - build
   - run
   - test
 
-backend_build:
-  stage: build
-  script:
-    - cd ./backend
-    - npm install
-
-frontend_build:
-  stage: build
-  script:
-    - cd ./frontend
-    - npm install
-
-backend_run:
+backend:
   stage: run
   script:
     - cd ./backend
+    - npm install
     - nodemon index.js
 
-frontend_run:
+frontend:
   stage: run
   script:
     - cd ./frontend
+    - npm install
     - npm start
 
 backend_test:
