@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("./index");
 const mongoose = require("mongoose");
+const User = require("./models/user");
 
 describe("authentication endpoints", () => {
   it("should sign up a new user", async () => {
@@ -38,7 +39,7 @@ describe("authentication endpoints", () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.dropCollection("users");
-    mongoose.connection.close();
+    await User.deleteOne({ username: "testuser" });
+    await mongoose.connection.close();
   });
 });
