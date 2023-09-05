@@ -8,6 +8,7 @@ backend:
   stage: run
   script:
     - cd ./backend
+    - npm install -g nodemon
     - npm install
     - nodemon index.js
 
