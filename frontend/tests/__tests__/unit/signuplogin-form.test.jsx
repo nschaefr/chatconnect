@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import SignuploginForm from "../../../src/components/signuplogin-page/signuplogin-form";
 
-describe("Rendering Error messages on LoginForm", () => {
+describe("rendering error messages on loginform", () => {
   beforeEach(() => {
     render(<SignuploginForm />);
   });
@@ -64,7 +64,7 @@ describe("Rendering Error messages on LoginForm", () => {
   });
 });
 
-describe("Rendering Error messages on SignupForm", () => {
+describe("rendering error messages on signupform", () => {
   beforeEach(() => {
     render(<SignuploginForm />);
     fireEvent.click(screen.getByTestId("create-account"));

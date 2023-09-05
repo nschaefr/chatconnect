@@ -206,3 +206,210 @@ exports[`SignupLoginForm Snapshot-Tests Rendering SignupLoginForm 1`] = `
   </div>
 </div>
 `;
+
+exports[`signuploginform snapshot-tests rendering loginform after click on 'login now' 1`] = `
+<div>
+  <div
+    class="form"
+  >
+    <div
+      class="headerDiv"
+    >
+      <img
+        src="[object Object]"
+        width="40px"
+      />
+      <p
+        class="header"
+      >
+        chatconnect
+      </p>
+    </div>
+    <p
+      class="slogan"
+    >
+      Sign In
+    </p>
+    <form>
+      <input
+        class="input"
+        data-testid="username-input"
+        placeholder="Username"
+        type="name"
+      />
+      <br />
+      <input
+        class="pwd"
+        data-testid="password-input"
+        placeholder="Password"
+        type="password"
+      />
+    </form>
+    <div
+      class="decision"
+    >
+      <div>
+        <p
+          class="text"
+        >
+          You haven't signed up yet?
+        </p>
+        <p
+          class="btn"
+          data-testid="create-account"
+        >
+          Create an account
+        </p>
+      </div>
+      <div
+        class="btn2"
+      >
+        <p
+          class="text2"
+          data-testid="submit-button"
+        >
+          Log In
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`signuploginform snapshot-tests rendering signupform after click on 'create an account' 1`] = `
+<div>
+  <div
+    class="form"
+  >
+    <div
+      class="headerDiv"
+    >
+      <img
+        src="[object Object]"
+        width="40px"
+      />
+      <p
+        class="header"
+      >
+        chatconnect
+      </p>
+    </div>
+    <p
+      class="slogan"
+    >
+      Sign Up
+    </p>
+    <form>
+      <input
+        class="input"
+        data-testid="username-input"
+        placeholder="Username"
+        type="name"
+      />
+      <br />
+      <input
+        class="pwd"
+        data-testid="password-input"
+        placeholder="Password"
+        type="password"
+      />
+    </form>
+    <div
+      class="decision"
+    >
+      <div>
+        <p
+          class="text"
+        >
+          Already have an account?
+        </p>
+        <p
+          class="btn"
+          data-testid="login-now"
+        >
+          Login now
+        </p>
+      </div>
+      <div
+        class="btn2"
+      >
+        <p
+          class="text2"
+          data-testid="submit-button"
+        >
+          Sign Up
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`signuploginform snapshot-tests rendering signuploginform 1`] = `
+<div>
+  <div
+    class="form"
+  >
+    <div
+      class="headerDiv"
+    >
+      <img
+        src="[object Object]"
+        width="40px"
+      />
+      <p
+        class="header"
+      >
+        chatconnect
+      </p>
+    </div>
+    <p
+      class="slogan"
+    >
+      Sign In
+    </p>
+    <form>
+      <input
+        class="input"
+        data-testid="username-input"
+        placeholder="Username"
+        type="name"
+      />
+      <br />
+      <input
+        class="pwd"
+        data-testid="password-input"
+        placeholder="Password"
+        type="password"
+      />
+    </form>
+    <div
+      class="decision"
+    >
+      <div>
+        <p
+          class="text"
+        >
+          You haven't signed up yet?
+        </p>
+        <p
+          class="btn"
+          data-testid="create-account"
+        >
+          Create an account
+        </p>
+      </div>
+      <div
+        class="btn2"
+      >
+        <p
+          class="text2"
+          data-testid="submit-button"
+        >
+          Log In
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
