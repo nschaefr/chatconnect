@@ -14,7 +14,7 @@ backend_build:
 frontend_build:
   stage: build
   script:
-    - cd ../frontend
+    - cd ./frontend
     - npm install
 
 backend_run:
