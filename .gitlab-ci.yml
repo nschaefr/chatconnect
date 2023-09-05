@@ -1,0 +1,23 @@
+stages:
+  - docker_compose
+  - backend_test
+  - frontend_test
+
+docker_compose:
+  stage: docker_compose
+  script:
+    - docker-compose up
+
+backend_test:
+  stage: backend_test
+  script:
+    - cd ./backend
+    - npm install
+    - npm test
+
+frontend_test:
+  stage: frontend_test
+  script:
+    - cd ./frontend
+    - npm install
+    - npm test
