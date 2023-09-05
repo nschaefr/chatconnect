@@ -13,7 +13,8 @@
     "ws": "^8.13.0"
   },
   "scripts": {
-    "test": "jest --runInBand --detectOpenHandles --forceExit"
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
+    "start-docker": "npm install && nodemon index.js"
   },
   "devDependencies": {
     "prettier": "3.0.0"

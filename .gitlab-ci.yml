@@ -2,14 +2,6 @@ stages:
   - build
   - test
 
-npm_build:
-  stage: build
-  script:
-    - cd ./backend
-    - npm install
-    - cd ../frontend
-    - npm install
-
 docker_build:
   stage: build
   script:
