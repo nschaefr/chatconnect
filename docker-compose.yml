@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: chatconnect-backend
     container_name: chatconnect-node-server
-    command: /usr/src/app/node_modules/.bin/nodemon server.js
+    command: /app/backend/node_modules/.bin/nodemon index.js
     volumes:
       - ./backend:/app/backend
       - /usr/src/app/node_modules
