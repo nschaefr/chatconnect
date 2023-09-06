@@ -158,7 +158,7 @@ function Chat() {
   }, [selectedUserId]);
 
   return (
-    <div className="chatDiv">
+    <div data-testid="chat-component" className="chatDiv">
       {!mobile && (
         <div className="sidebarDiv">
           <div className="informationDiv">
@@ -177,6 +177,7 @@ function Chat() {
             <div>
               {Object.keys(onlinePeopleList).map((userId) => (
                 <Contact
+                  data-testid="contact"
                   key={userId}
                   id={userId}
                   online={true}
@@ -199,7 +200,7 @@ function Chat() {
                 </div>
               </div>
             </div>
-            <div className="logoutDiv">
+            <div data-testid="logout-button" className="logoutDiv">
               <img onClick={logout} src={Logout} width={"30px"} />
             </div>
           </div>
@@ -238,7 +239,7 @@ function Chat() {
                 </div>
               </div>
               <div className="bottomDiv">
-                <div className="logoutDiv">
+                <div data-testid="logout-button" className="logoutDiv">
                   <img onClick={logout} src={Logout} width={"30px"} />
                 </div>
               </div>
@@ -292,7 +293,7 @@ function Chat() {
                     </div>
                   </div>
                 </div>
-                <div className="logoutDiv">
+                <div data-testid="logout-button" className="logoutDiv">
                   <img onClick={logout} src={Logout} width={"30px"} />
                 </div>
               </div>

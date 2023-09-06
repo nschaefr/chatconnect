@@ -43,10 +43,6 @@ describe("rendering error messages on loginform", () => {
       target: { value: "testpassword" },
     });
     fireEvent.click(screen.getByTestId("submit-button"));
-
-    /* TODO: connection with backend not working right now
-    const invalidDataError = screen.getByTestId("invalid-data-error");
-    expect(invalidDataError).toBeInTheDocument(); */
   });
 
   it("invalid-data-error visible when data invalid because of invalid password", () => {
@@ -57,10 +53,6 @@ describe("rendering error messages on loginform", () => {
       target: { value: "invalid-password" },
     });
     fireEvent.click(screen.getByTestId("submit-button"));
-
-    /* TODO: connection with backend not working right now
-    const invalidDataError = screen.getByTestId("invalid-data-error");
-    expect(invalidDataError).toBeInTheDocument(); */
   });
 });
 
@@ -92,23 +84,13 @@ describe("rendering error messages on signupform", () => {
     fireEvent.change(screen.getByTestId("password-input"), {
       target: { value: "12345678" },
     });
-    fireEvent.click(screen.getByTestId("submit-button"));
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.keyDown(passwordInput, {
+      key: "Enter",
+      code: "Enter",
+    });
 
     const canNotBeEmptyError = screen.getByTestId("cannot-be-empty-error");
     expect(canNotBeEmptyError).toBeInTheDocument();
-  });
-
-  it("already-exists-error visible when username already exists", () => {
-    fireEvent.change(screen.getByTestId("username-input"), {
-      target: { value: "testuser" },
-    });
-    fireEvent.change(screen.getByTestId("password-input"), {
-      target: { value: "testpassword" },
-    });
-    fireEvent.click(screen.getByTestId("submit-button"));
-
-    /* TODO: connection with backend not working right now
-    const alreadyExistsError = screen.getByTestId("already-exists-error");
-    expect(alreadyExistsError).toBeInTheDocument(); */
   });
 });
