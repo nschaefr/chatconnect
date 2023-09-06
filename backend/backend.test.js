@@ -5,6 +5,7 @@ const User = require("./models/user");
 
 describe("authentication endpoints", () => {
   it("should sign up a new user", async () => {
+    await User.deleteOne({ username: "testuser" });
     const response = await request(app)
       .post("/signup")
       .send({ username: "testuser", password: "testpassword" });
@@ -39,7 +40,6 @@ describe("authentication endpoints", () => {
   });
 
   afterAll(async () => {
-    await User.deleteOne({ username: "testuser" });
     await mongoose.connection.close();
   });
 });
