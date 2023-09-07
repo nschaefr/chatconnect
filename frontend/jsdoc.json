@@ -1,4 +1,8 @@
 {
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+      },
     "source": {
         "include": ["./src"],
         "includePattern": ".jsx$",
@@ -6,15 +10,19 @@
     },
     "plugins": [
         "plugins/markdown",
-        "jsdoc-mermaid",
-        "node_modules/better-docs/category"
+        "node_modules/better-docs/component"
     ],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": true,
+        "useLongnameInNav": false,
+        "showInheritedInNav": true
+    },
     "opts": {
         "encoding": "utf8",
-        "readme": "../README.md",
         "destination": "docs/",
         "recurse": true,
         "verbose": true,
-        "template": "node_modules/better-docs/"
+        "template": "node_modules/minami"
     }
 }
