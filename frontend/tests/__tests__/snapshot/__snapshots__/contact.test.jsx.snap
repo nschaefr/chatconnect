@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`contact snapshots render contact component 1`] = `
+<div>
+  <div
+    class="contactDiv"
+    data-testid="contact"
+    style="padding: 10px 0px 10px 20px; display: flex; align-items: center; color: white; gap: 10px; margin-left: 15px; margin-right: 15px; cursor: pointer; border-radius: 3px; background-color: rgb(40, 40, 60);"
+  >
+    <div
+      data-testid="avatar"
+      style="background-color: rgb(153, 207, 201); width: 35px; height: 35px; display: flex; border-radius: 50%; align-items: center; justify-content: center;"
+    >
+      <div
+        style="font-family: ExtraBold; color: white; font-size: 15px;"
+      >
+        T
+      </div>
+    </div>
+    <div
+      class="contactNameDiv"
+    >
+      <span
+        style="font-size: 15px; font-family: SemiBold;"
+      >
+        testuser
+      </span>
+    </div>
+  </div>
+</div>
+`;

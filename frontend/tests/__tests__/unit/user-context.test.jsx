@@ -1,13 +1,12 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import Chat from "../../../src/components/chat-page/chat";
 import {
   UserContext,
   ContextProvider,
 } from "../../../src/components/utils/user-context";
 import axios from "axios";
 
-describe("ContextProvider", () => {
+describe("context provider", () => {
   it("should fetch user data and provide it through context", async () => {
     const mockUserData = {
       id: "mockedUserId",

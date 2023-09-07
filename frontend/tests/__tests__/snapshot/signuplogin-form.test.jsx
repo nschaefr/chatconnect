@@ -17,7 +17,7 @@ const UserContextMock = ({ children }) => (
   </UserContext.Provider>
 );
 
-describe("signuploginform snapshot-tests", () => {
+describe("signuploginform snapshots", () => {
   it("rendering signuploginform", () => {
     const { container } = render(<SignuploginForm />);
 

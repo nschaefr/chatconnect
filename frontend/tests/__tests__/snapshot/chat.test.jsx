@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import Chat from "../../../src/components/chat-page/chat";
+import ChatPage from "../../../src/pages/chat-page/chat-page";
 import { UserContext } from "../../../src/components/utils/user-context";
 
 const UserContextMock = ({ children }) => (
@@ -16,11 +16,11 @@ const UserContextMock = ({ children }) => (
   </UserContext.Provider>
 );
 
-describe("chat snapshot-tests", () => {
+describe("chat snapshots", () => {
   it("rendering chat", () => {
     const { container } = render(
       <UserContextMock>
-        <Chat />
+        <ChatPage />
       </UserContextMock>
     );
 

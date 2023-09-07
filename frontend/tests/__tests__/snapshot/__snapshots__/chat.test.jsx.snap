@@ -1,90 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`chat snapshot-tests rendering chat 1`] = `
+exports[`chat snapshots rendering chat 1`] = `
 <div>
   <div
-    class="chatDiv"
-    data-testid="chat-component"
+    class="page"
   >
     <div
-      class="sidebarDiv"
+      class="container"
     >
       <div
-        class="informationDiv"
+        class="chatDiv"
+        data-testid="chat-component"
       >
         <div
-          class="logoDiv"
-        >
-          <img
-            src="[object Object]"
-            width="35px"
-          />
-          <p
-            class="appName"
-          >
-            chatconnect
-          </p>
-        </div>
-        <div
-          class="searchBarDiv"
-        >
-          <input
-            class="searchBar"
-            placeholder="Find contacts..."
-          />
-        </div>
-        <div />
-      </div>
-      <div
-        class="bottomDiv"
-      >
-        <div
-          class="userInformation"
+          class="sidebarDiv"
         >
           <div
-            style="background-color: rgb(115, 182, 165); width: 30px; height: 30px; display: flex; border-radius: 50%; align-items: center; justify-content: center;"
+            class="informationDiv"
           >
             <div
-              style="font-family: ExtraBold; color: white; font-size: 13px;"
+              class="logoDiv"
             >
-              M
-            </div>
-          </div>
-          <div
-            class="usernameInformationDiv"
-          >
-            <div
-              class="usernameInformation"
-            >
-              <span
-                class="username"
+              <img
+                src="[object Object]"
+                width="35px"
+              />
+              <p
+                class="appName"
               >
-                mockuser
-              </span>
+                chatconnect
+              </p>
+            </div>
+            <div
+              class="searchBarDiv"
+            >
+              <input
+                class="searchBar"
+                placeholder="Find contacts..."
+              />
+            </div>
+            <div />
+          </div>
+          <div
+            class="bottomDiv"
+          >
+            <div
+              class="userInformation"
+            >
+              <div
+                data-testid="avatar"
+                style="background-color: rgb(115, 182, 165); width: 30px; height: 30px; display: flex; border-radius: 50%; align-items: center; justify-content: center;"
+              >
+                <div
+                  style="font-family: ExtraBold; color: white; font-size: 13px;"
+                >
+                  M
+                </div>
+              </div>
+              <div
+                class="usernameInformationDiv"
+              >
+                <div
+                  class="usernameInformation"
+                >
+                  <span
+                    class="username"
+                  >
+                    mockuser
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="logoutDiv"
+              data-testid="logout-button"
+            >
+              <img
+                src="[object Object]"
+                width="30px"
+              />
             </div>
           </div>
         </div>
         <div
-          class="logoutDiv"
-          data-testid="logout-button"
+          class="chattingDiv"
         >
-          <img
-            src="[object Object]"
-            width="30px"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      class="chattingDiv"
-    >
-      <div
-        class="contentAreaDiv"
-      >
-        <div
-          class="noSelectedContact"
-        >
-          Select a chat on the left.
+          <div
+            class="contentAreaDiv"
+          >
+            <div
+              class="noSelectedContact"
+            >
+              Select a chat on the left.
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -207,7 +207,7 @@ function Chat() {
         </div>
       )}
       {mobile && (
-        <div className="mobileDiv">
+        <div data-testid="mobile-view" className="mobileDiv">
           {!toggle && (
             <div className="sidebarDiv2">
               <div className="informationDiv">

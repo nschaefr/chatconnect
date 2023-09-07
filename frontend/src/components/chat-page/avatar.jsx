@@ -21,6 +21,7 @@ function Avatar({ username, userId }) {
 
   return (
     <div
+      data-testid="avatar"
       style={{
         backgroundColor: `${
           userId === "chat" || userId === "default" ? "#73b6A5" : randomColor
