@@ -4,6 +4,7 @@ import "./styles.css";
 function Contact({ id, username, onClick, selected, screen }) {
   return (
     <div
+      data-testid="contact"
       className="contactDiv"
       key={id}
       onClick={() => onClick(id)}

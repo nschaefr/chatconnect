@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`avatar snapshots render avatar component 1`] = `
+<div>
+  <div
+    data-testid="avatar"
+    style="background-color: rgb(153, 207, 201); width: 35px; height: 35px; display: flex; border-radius: 50%; align-items: center; justify-content: center;"
+  >
+    <div
+      style="font-family: ExtraBold; color: white; font-size: 15px;"
+    >
+      T
+    </div>
+  </div>
+</div>
+`;
