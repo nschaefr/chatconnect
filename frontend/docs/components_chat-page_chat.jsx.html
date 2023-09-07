@@ -1,4 +1,32 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/chat-page/chat.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/chat-page/chat.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useEffect, useRef, useState } from "react";
 import { uniqBy } from "lodash";
 import { UserContext } from "../utils/user-context";
 import "./styles.css";
@@ -34,7 +62,7 @@ function Chat() {
    * in mobile view or normal browser view
    */
   const handleResize = () => {
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth &lt;= 600) {
       setMobile(true);
     } else {
       setMobile(false);
@@ -55,7 +83,7 @@ function Chat() {
   }
   /**
    * Shows the user which other users are online
-   * @param {Array<string>} peopleArray - online users
+   * @param {Array&lt;string>} peopleArray - online users
    */
   function showOnlinePeople(peopleArray) {
     const people = {};
@@ -195,25 +223,25 @@ function Chat() {
   }, [selectedUserId]);
 
   return (
-    <div className="chatDiv">
-      {!mobile && (
-        <div className="sidebarDiv">
-          <div className="informationDiv">
-            <div className="logoDiv">
-              <img src={Logo} width={"35px"} />
-              <p className="appName">chatconnect</p>
-            </div>
-            <div className="searchBarDiv">
-              <input
+    &lt;div className="chatDiv">
+      {!mobile &amp;&amp; (
+        &lt;div className="sidebarDiv">
+          &lt;div className="informationDiv">
+            &lt;div className="logoDiv">
+              &lt;img src={Logo} width={"35px"} />
+              &lt;p className="appName">chatconnect&lt;/p>
+            &lt;/div>
+            &lt;div className="searchBarDiv">
+              &lt;input
                 className="searchBar"
                 ref={keyword}
                 onChange={filterbyKeyword}
                 placeholder="Find contacts..."
               />
-            </div>
-            <div>
+            &lt;/div>
+            &lt;div>
               {Object.keys(onlinePeopleList).map((userId) => (
-                <Contact
+                &lt;Contact
                   key={userId}
                   id={userId}
                   online={true}
@@ -225,30 +253,30 @@ function Chat() {
                   selected={userId === selectedUserId}
                 />
               ))}
-            </div>
-          </div>
-          <div className="bottomDiv">
-            <div className="userInformation">
-              <Avatar username={username} userId="default" />
-              <div className="usernameInformationDiv">
-                <div className="usernameInformation">
-                  <span className="username">{username}</span>
-                </div>
-              </div>
-            </div>
-            <div className="logoutDiv">
-              <img onClick={logout} src={Logout} width={"30px"} />
-            </div>
-          </div>
-        </div>
+            &lt;/div>
+          &lt;/div>
+          &lt;div className="bottomDiv">
+            &lt;div className="userInformation">
+              &lt;Avatar username={username} userId="default" />
+              &lt;div className="usernameInformationDiv">
+                &lt;div className="usernameInformation">
+                  &lt;span className="username">{username}&lt;/span>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+            &lt;div className="logoutDiv">
+              &lt;img onClick={logout} src={Logout} width={"30px"} />
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
       )}
-      {mobile && (
-        <div className="mobileDiv">
-          {!toggle && (
-            <div className="sidebarDiv2">
-              <div className="informationDiv">
-                <div className="menuDiv">
-                  <img
+      {mobile &amp;&amp; (
+        &lt;div className="mobileDiv">
+          {!toggle &amp;&amp; (
+            &lt;div className="sidebarDiv2">
+              &lt;div className="informationDiv">
+                &lt;div className="menuDiv">
+                  &lt;img
                     className="menuIcon"
                     src={Menu}
                     width={"30px"}
@@ -256,10 +284,10 @@ function Chat() {
                       setToggle(true);
                     }}
                   />
-                </div>
-                <div>
+                &lt;/div>
+                &lt;div>
                   {Object.keys(onlinePeopleList).map((userId) => (
-                    <Contact
+                    &lt;Contact
                       key={userId}
                       id={userId}
                       online={true}
@@ -272,21 +300,21 @@ function Chat() {
                       screen="mobile"
                     />
                   ))}
-                </div>
-              </div>
-              <div className="bottomDiv">
-                <div className="logoutDiv">
-                  <img onClick={logout} src={Logout} width={"30px"} />
-                </div>
-              </div>
-            </div>
+                &lt;/div>
+              &lt;/div>
+              &lt;div className="bottomDiv">
+                &lt;div className="logoutDiv">
+                  &lt;img onClick={logout} src={Logout} width={"30px"} />
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
           )}
-          {toggle && (
-            <div className="sidebarDiv3">
-              <div className="informationDiv">
-                <div className="logoDiv">
-                  <div>
-                    <img
+          {toggle &amp;&amp; (
+            &lt;div className="sidebarDiv3">
+              &lt;div className="informationDiv">
+                &lt;div className="logoDiv">
+                  &lt;div>
+                    &lt;img
                       className="menuIcon"
                       src={Close}
                       width={"30px"}
@@ -294,19 +322,19 @@ function Chat() {
                         setToggle(false);
                       }}
                     />
-                  </div>
-                </div>
-                <div className="searchBarDiv">
-                  <input
+                  &lt;/div>
+                &lt;/div>
+                &lt;div className="searchBarDiv">
+                  &lt;input
                     className="searchBar"
                     ref={keyword}
                     onChange={filterbyKeyword}
                     placeholder="Find contacts..."
                   />
-                </div>
-                <div>
+                &lt;/div>
+                &lt;div>
                   {Object.keys(onlinePeopleList).map((userId) => (
-                    <Contact
+                    &lt;Contact
                       key={userId}
                       id={userId}
                       online={true}
@@ -318,38 +346,38 @@ function Chat() {
                       selected={userId === selectedUserId}
                     />
                   ))}
-                </div>
-              </div>
-              <div className="bottomDiv">
-                <div className="userInformation">
-                  <Avatar username={username} userId="default" />
-                  <div className="usernameInformationDiv">
-                    <div className="usernameInformation">
-                      <span className="username">{username}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="logoutDiv">
-                  <img onClick={logout} src={Logout} width={"30px"} />
-                </div>
-              </div>
-            </div>
+                &lt;/div>
+              &lt;/div>
+              &lt;div className="bottomDiv">
+                &lt;div className="userInformation">
+                  &lt;Avatar username={username} userId="default" />
+                  &lt;div className="usernameInformationDiv">
+                    &lt;div className="usernameInformation">
+                      &lt;span className="username">{username}&lt;/span>
+                    &lt;/div>
+                  &lt;/div>
+                &lt;/div>
+                &lt;div className="logoutDiv">
+                  &lt;img onClick={logout} src={Logout} width={"30px"} />
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
           )}
-        </div>
+        &lt;/div>
       )}
-      <div className="chattingDiv">
-        <div className="contentAreaDiv">
-          {!selectedUserId && (
-            <div className="noSelectedContact">Select a chat on the left.</div>
+      &lt;div className="chattingDiv">
+        &lt;div className="contentAreaDiv">
+          {!selectedUserId &amp;&amp; (
+            &lt;div className="noSelectedContact">Select a chat on the left.&lt;/div>
           )}
-          {selectedUserId && (
-            <div className="messageAreaDiv">
-              <div className="messageArea">
+          {selectedUserId &amp;&amp; (
+            &lt;div className="messageAreaDiv">
+              &lt;div className="messageArea">
                 {extractedMessages.map((message) => (
-                  <div className="messageDiv" key={message._id}>
-                    <div className="contentDiv">
-                      <div className="message" key={message._id}>
-                        <Avatar
+                  &lt;div className="messageDiv" key={message._id}>
+                    &lt;div className="contentDiv">
+                      &lt;div className="message" key={message._id}>
+                        &lt;Avatar
                           username={`${
                             message.sender !== selectedUserId
                               ? username
@@ -361,43 +389,66 @@ function Chat() {
                               : selectedUserId
                           }`}
                         />
-                        <div className="messageContentDiv">
-                          <div className="messageInformation">
-                            <p className="messageSender">
+                        &lt;div className="messageContentDiv">
+                          &lt;div className="messageInformation">
+                            &lt;p className="messageSender">
                               {message.sender !== selectedUserId
                                 ? "You"
                                 : onlinePeopleList[selectedUserId]}
-                            </p>
-                            <p className="messageSentAt">{message.sentAt}</p>
-                          </div>
-                          <div className="messageText">{message.text}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                            &lt;/p>
+                            &lt;p className="messageSentAt">{message.sentAt}&lt;/p>
+                          &lt;/div>
+                          &lt;div className="messageText">{message.text}&lt;/div>
+                        &lt;/div>
+                      &lt;/div>
+                    &lt;/div>
+                  &lt;/div>
                 ))}
-                <div className="scrollDiv" ref={alwaysBottom}></div>
-              </div>
-            </div>
+                &lt;div className="scrollDiv" ref={alwaysBottom}>&lt;/div>
+              &lt;/div>
+            &lt;/div>
           )}
-        </div>
-        {selectedUserId && (
-          <form className="sendMessageForm" onSubmit={sendMessage}>
-            <input
+        &lt;/div>
+        {selectedUserId &amp;&amp; (
+          &lt;form className="sendMessageForm" onSubmit={sendMessage}>
+            &lt;input
               className="sendMessageInput"
               type="text"
               placeholder="Type a message..."
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
             />
-            <button className="sendMessageButton" type="submit">
-              <img src={Send} width={"25px"} />
-            </button>
-          </form>
+            &lt;button className="sendMessageButton" type="submit">
+              &lt;img src={Send} width={"25px"} />
+            &lt;/button>
+          &lt;/form>
         )}
-      </div>
-    </div>
+      &lt;/div>
+    &lt;/div>
   );
 }
 
 export default Chat;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Avatar.html">Avatar</a></li><li><a href="Chat.html">Chat</a></li><li><a href="Contact.html">Contact</a></li><li><a href="Routes.html">Routes</a></li><li><a href="SignuploginForm.html">SignuploginForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 07 2023 17:10:02 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

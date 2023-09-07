@@ -1,4 +1,32 @@
-import React, { useContext, useState, useRef } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/signuplogin-page/signuplogin-form.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/signuplogin-page/signuplogin-form.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useState, useRef } from "react";
 import { UserContext } from "../utils/user-context";
 import "./styles.css";
 import axios from "axios";
@@ -37,15 +65,15 @@ function SignuploginForm() {
       ? setDupeValidation(data.duplicate)
       : setAccountValidation(data.valid);
     if (
-      form === "signup" &&
-      isValidUsername &&
-      isValidPassword &&
+      form === "signup" &amp;&amp;
+      isValidUsername &amp;&amp;
+      isValidPassword &amp;&amp;
       data.duplicate !== true
     ) {
       setLoggedInUsername(username);
       setId(data.id);
     }
-    if (form === "login" && data.valid) {
+    if (form === "login" &amp;&amp; data.valid) {
       setLoggedInUsername(username);
       setId(data.id);
     } else {
@@ -58,7 +86,7 @@ function SignuploginForm() {
    * @param {string} password - Password that user typed in 
    */
   const validatePassword = (password) => {
-    if (password && password.match(validPassword)) {
+    if (password &amp;&amp; password.match(validPassword)) {
       setPassword(password);
       setPasswordValidation(true);
     } else {
@@ -71,7 +99,7 @@ function SignuploginForm() {
    * @param {string} username - Username that user typed in
    */
   const validateUsername = (username) => {
-    if (username && username.match(validUsername)) {
+    if (username &amp;&amp; username.match(validUsername)) {
       setUsername(username);
       setUsernameValidation(true);
       setDupeValidation(null);
@@ -82,37 +110,37 @@ function SignuploginForm() {
   };
 
   return (
-    <div className="form">
-      <div className="headerDiv">
-        <img src={Logo} width={"40px"} />
-        <p className="header">chatconnect</p>
-      </div>
-      {form === "login" && <p className="slogan">Sign In</p>}
-      {form === "signup" && <p className="slogan">Sign Up</p>}
-      <form>
-        {isValidUsername === false && form === "signup" && (
-          <p className="invalid">
-            {form === "signup" && (
-              <span data-testid="cannot-be-empty-error">
+    &lt;div className="form">
+      &lt;div className="headerDiv">
+        &lt;img src={Logo} width={"40px"} />
+        &lt;p className="header">chatconnect&lt;/p>
+      &lt;/div>
+      {form === "login" &amp;&amp; &lt;p className="slogan">Sign In&lt;/p>}
+      {form === "signup" &amp;&amp; &lt;p className="slogan">Sign Up&lt;/p>}
+      &lt;form>
+        {isValidUsername === false &amp;&amp; form === "signup" &amp;&amp; (
+          &lt;p className="invalid">
+            {form === "signup" &amp;&amp; (
+              &lt;span data-testid="cannot-be-empty-error">
                 Username cannot be empty.
-              </span>
+              &lt;/span>
             )}
-          </p>
+          &lt;/p>
         )}
-        {form === "login" &&
-          (isValidAccount === false || isValidUsername === false) && (
-            <p data-testid="invalid-data-error" className="invalid">
+        {form === "login" &amp;&amp;
+          (isValidAccount === false || isValidUsername === false) &amp;&amp; (
+            &lt;p data-testid="invalid-data-error" className="invalid">
               Incorrect username or password.
-            </p>
+            &lt;/p>
           )}
-        {isDupeUsername === true &&
-          isValidUsername === true &&
-          form === "signup" && (
-            <p data-testid="already-exists-error" className="invalid">
+        {isDupeUsername === true &amp;&amp;
+          isValidUsername === true &amp;&amp;
+          form === "signup" &amp;&amp; (
+            &lt;p data-testid="already-exists-error" className="invalid">
               Username already exists.
-            </p>
+            &lt;/p>
           )}
-        <input
+        &lt;input
           data-testid="username-input"
           type="name"
           ref={usernameIn}
@@ -120,13 +148,13 @@ function SignuploginForm() {
           className="input"
           placeholder="Username"
         />
-        <br />
-        {isValidPassword === false && (
-          <p data-testid="password-error" className="invalid">
+        &lt;br />
+        {isValidPassword === false &amp;&amp; (
+          &lt;p data-testid="password-error" className="invalid">
             Your password should have at least 8 characters.
-          </p>
+          &lt;/p>
         )}
-        <input
+        &lt;input
           data-testid="password-input"
           type="password"
           ref={passwordIn}
@@ -134,7 +162,7 @@ function SignuploginForm() {
           className="pwd"
           placeholder="Password"
           onKeyDown={(ev) => {
-            if (ev.key === "Enter" && isValidPassword) {
+            if (ev.key === "Enter" &amp;&amp; isValidPassword) {
               if (isValidUsername) {
                 submitHandler();
               } else {
@@ -143,12 +171,12 @@ function SignuploginForm() {
             }
           }}
         />
-      </form>
-      <div className="decision">
-        {form === "login" && (
-          <div>
-            <p className="text">You haven't signed up yet?</p>
-            <p
+      &lt;/form>
+      &lt;div className="decision">
+        {form === "login" &amp;&amp; (
+          &lt;div>
+            &lt;p className="text">You haven't signed up yet?&lt;/p>
+            &lt;p
               data-testid="create-account"
               className="btn"
               onClick={() => {
@@ -162,13 +190,13 @@ function SignuploginForm() {
               }}
             >
               Create an account
-            </p>
-          </div>
+            &lt;/p>
+          &lt;/div>
         )}
-        {form === "signup" && (
-          <div>
-            <p className="text">Already have an account?</p>
-            <p
+        {form === "signup" &amp;&amp; (
+          &lt;div>
+            &lt;p className="text">Already have an account?&lt;/p>
+            &lt;p
               data-testid="login-now"
               className="btn"
               onClick={() => {
@@ -182,10 +210,10 @@ function SignuploginForm() {
               }}
             >
               Login now
-            </p>
-          </div>
+            &lt;/p>
+          &lt;/div>
         )}
-        <div
+        &lt;div
           className="btn2"
           onClick={() => {
             if (isValidPassword) {
@@ -197,13 +225,36 @@ function SignuploginForm() {
             }
           }}
         >
-          <p data-testid="submit-button" className="text2">
+          &lt;p data-testid="submit-button" className="text2">
             {form === "signup" ? "Sign Up" : "Log In"}
-          </p>
-        </div>
-      </div>
-    </div>
+          &lt;/p>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
   );
 }
 
 export default SignuploginForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Avatar.html">Avatar</a></li><li><a href="Chat.html">Chat</a></li><li><a href="Contact.html">Contact</a></li><li><a href="Routes.html">Routes</a></li><li><a href="SignuploginForm.html">SignuploginForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 07 2023 17:10:02 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
