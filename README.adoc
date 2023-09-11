@@ -1,4 +1,6 @@
 = ChatConnect
+Schäfer, Nils / Pitzin, Tim
+v1.0
 
 image::chatconnect.png[300, 300]
 ChatConnect ist eine Echtzeit-Chatanwendung, die es Benutzern ermöglicht, Textnachrichten in Echtzeit auszutauschen. Die Hauptaufgabe dieses Projekts besteht darin, eine benutzerfreundliche und zuverlässige Plattform für die Kommunikation über das Internet bereitzustellen. Die Anwendung bietet die folgenden Funktionen:
