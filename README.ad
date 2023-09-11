@@ -1,0 +1,28 @@
+= ChatConnect
+von Tim Pitzing und Nils Schäfer
+
+image::chatconnect.png[300, 300]
+
+==== Beschreibung 
+
+ChatConnect ist eine Echtzeit-Chatanwendung, die es Benutzern ermöglicht, Textnachrichten in Echtzeit auszutauschen. Die Hauptaufgabe dieses Projekts besteht darin, eine benutzerfreundliche und zuverlässige Plattform für die Kommunikation über das Internet bereitzustellen. Die Anwendung bietet die folgenden Funktionen:
+
+===== Registrierung und Login
+Benutzer haben die Möglichkeit, sich über ein intuitives Registrierungsformular anzumelden und sich mit ihren Anmeldeinformationen einzuloggen. Dies gewährleistet die Sicherheit und die Personalisierung der Chat-Erfahrung.
+
+===== Echtzeit-Kommunikation
+ChatConnect ermöglicht Benutzern das Senden und Empfangen von Textnachrichten in Echtzeit. Dies ermöglicht reibungslose Konversationen zwischen Benutzern, unabhängig von ihrer geografischen Lage.
+
+===== Namensfilter
+Die Anwendung bietet die Möglichkeit, Benutzer nach Namen zu filtern. Dies erleichtert das Auffinden von Gesprächspartnern und früheren Unterhaltungen.
+
+===== Konsistente Datenbank-Speicherung
+Alle Daten, einschließlich Nachrichten, Chat-Verläufe und Benutzerinformationen, werden konsistent in einer Datenbank gespeichert. Dies gewährleistet die Integrität der Daten und ermöglicht eine einfache Verwaltung und Sicherung.
+
+==== Technologiestack
+
+* Frontend: Die Benutzeroberfläche wurde mit React erstellt.
+* Backend: Das Backend wurde mit der Programmiersprache Node.js und dem Framework Express.js entwickelt.
+* Datenbank: MongoDB wird zur sicheren und zuverlässigen Speicherung der Daten verwendet.
+* Echtzeit-Kommunikation: WebSocket-Technologie wird verwendet, um Echtzeit-Nachrichtenübertragung zu ermöglichen.
+* Sicherheit: Die Anwendung besitzt Sicherheitsmaßnahmen wie Verschlüsselung und Authentifizierung, um die Benutzerdaten zu schützen.
