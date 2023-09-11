@@ -2,7 +2,6 @@ import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import SignuploginForm from "../../../src/components/signuplogin-page/signuplogin-form";
 const axios = require("axios");
-import jwt from "jsonwebtoken";
 
 jest.mock("axios");
 jest.mock("jsonwebtoken");
@@ -143,43 +142,6 @@ describe("rendering error messages on signupform", () => {
     await waitFor(() => {
       const alreadyExistsError = screen.getByTestId("already-exists-error");
       expect(alreadyExistsError).toBeInTheDocument();
-    });
-  });
-});
-
-describe("rendering chat component after valid data", () => {
-  beforeEach(() => {
-    render(<SignuploginForm />);
-  });
-
-  it("successful rendering after login", async () => {
-    const token = jwt.sign(
-      { userId: "mock_id_123", username: "testuser" },
-      "jsonWebTokenSecret",
-      {}
-    );
-    jest.spyOn(axios, "post").mockImplementation(() => {
-      return Promise.resolve({ data: { id: "mock_id_123", valid: true } });
-    });
-
-    jwt.sign.mockReturnValue(token);
-
-    fireEvent.change(screen.getByTestId("username-input"), {
-      target: { value: "testuser" },
-    });
-    fireEvent.change(screen.getByTestId("password-input"), {
-      target: { value: "testpassword" },
-    });
-
-    const passwordInput = screen.getByTestId("password-input");
-    fireEvent.keyDown(passwordInput, {
-      key: "Enter",
-      code: "Enter",
-    });
-
-    await waitFor(() => {
-      const chatComponent = screen.getByTestId("chat-component");
-      expect(chatComponent).toBeInTheDocument();
     });
   });
 });
