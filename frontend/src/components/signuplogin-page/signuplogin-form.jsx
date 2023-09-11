@@ -3,8 +3,14 @@ import { UserContext } from "../utils/user-context";
 import "./styles.css";
 import axios from "axios";
 import Logo from "../../assets/icons/logo.svg";
-
+/**
+ * Component SignupLoginForm
+ * A Component which can switch between a
+ * Sign Up and Login form
+ * @component
+ */
 function SignuploginForm() {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [form, setForm] = useState("login");
@@ -18,6 +24,12 @@ function SignuploginForm() {
   const usernameIn = useRef(null);
   const passwordIn = useRef(null);
 
+  /**
+   * Function to check if the password and username are valid
+   * @async
+   * @method
+   * 
+   */
   async function submitHandler() {
     const url = form === "signup" ? "signup" : "login";
     const { data } = await axios.post(url, { username, password });
@@ -41,6 +53,10 @@ function SignuploginForm() {
     }
   }
 
+  /**
+   * Validates a Password
+   * @param {string} password - Password that user typed in 
+   */
   const validatePassword = (password) => {
     if (password && password.match(validPassword)) {
       setPassword(password);
@@ -50,6 +66,10 @@ function SignuploginForm() {
     }
   };
 
+  /**
+   * Validates a username
+   * @param {string} username - Username that user typed in
+   */
   const validateUsername = (username) => {
     if (username && username.match(validUsername)) {
       setUsername(username);

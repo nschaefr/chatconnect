@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      components/signuplogin-page/signuplogin-form.jsx - Documentation
+    </title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+    <label for="nav-trigger" class="navicon-button x">
+      <div class="navicon"></div>
+    </label>
+
+    <label for="nav-trigger" class="overlay"></label>
+
+    <nav>
+      <li class="nav-link nav-home-link"><a href="index.html">Home</a></li>
+      <li class="nav-heading">Classes</li>
+      <li class="nav-heading">
+        <span class="nav-item-type type-class">C</span
+        ><span class="nav-item-name"><a href="Avatar.html">Avatar</a></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Avatar.html#~getColorByHash">getColorByHash</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Avatar.html#~hashCode">hashCode</a></span
+        >
+      </li>
+      <li class="nav-heading">
+        <span class="nav-item-type type-class">C</span
+        ><span class="nav-item-name"><a href="Chat.html">Chat</a></span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~connectToWebSocket">connectToWebSocket</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~filterbyKeyword">filterbyKeyword</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~handleMessage">handleMessage</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~handleResize">handleResize</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~logout">logout</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~sendMessage">sendMessage</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="Chat.html#~showOnlinePeople">showOnlinePeople</a></span
+        >
+      </li>
+      <li class="nav-heading">
+        <span class="nav-item-type type-class">C</span
+        ><span class="nav-item-name"><a href="Contact.html">Contact</a></span>
+      </li>
+      <li class="nav-heading">
+        <span class="nav-item-type type-class">C</span
+        ><span class="nav-item-name"><a href="Routes.html">Routes</a></span>
+      </li>
+      <li class="nav-heading">
+        <span class="nav-item-type type-class">C</span
+        ><span class="nav-item-name"
+          ><a href="SignuploginForm.html">SignuploginForm</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="SignuploginForm.html#~submitHandler">submitHandler</a></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="SignuploginForm.html#~validatePassword"
+            >validatePassword</a
+          ></span
+        >
+      </li>
+      <li class="nav-item">
+        <span class="nav-item-type type-function">F</span
+        ><span class="nav-item-name"
+          ><a href="SignuploginForm.html#~validateUsername"
+            >validateUsername</a
+          ></span
+        >
+      </li>
+    </nav>
+
+    <div id="main">
+      <h1 class="page-title">
+        components/signuplogin-page/signuplogin-form.jsx
+      </h1>
+
+      <section>
+        <article>
+          <pre
+            class="prettyprint source linenums"
+          ><code>import React, { useContext, useState, useRef } from "react";
+import { UserContext } from "../utils/user-context";
+import "./styles.css";
+import axios from "axios";
+import Logo from "../../assets/icons/logo.svg";
+/**
+ * Component SignupLoginForm
+ * A Component which can switch between a
+ * Sign Up and Login form
+ * @component
+ */
+function SignuploginForm() {
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [form, setForm] = useState("login");
+  const { setLoggedInUsername, setId } = useContext(UserContext);
+  const validPassword = "^(.){8,}$";
+  const validUsername = "^(.){1,}$";
+  const [isValidPassword, setPasswordValidation] = useState(null);
+  const [isValidUsername, setUsernameValidation] = useState(null);
+  const [isValidAccount, setAccountValidation] = useState(null);
+  const [isDupeUsername, setDupeValidation] = useState(null);
+  const usernameIn = useRef(null);
+  const passwordIn = useRef(null);
+
+  /**
+   * Function to check if the password and username are valid
+   * @async
+   * @method
+   * 
+   */
+  async function submitHandler() {
+    const url = form === "signup" ? "signup" : "login";
+    const { data } = await axios.post(url, { username, password });
+    form === "signup"
+      ? setDupeValidation(data.duplicate)
+      : setAccountValidation(data.valid);
+    if (
+      form === "signup" &amp;&amp;
+      isValidUsername &amp;&amp;
+      isValidPassword &amp;&amp;
+      data.duplicate !== true
+    ) {
+      setLoggedInUsername(username);
+      setId(data.id);
+    }
+    if (form === "login" &amp;&amp; data.valid) {
+      setLoggedInUsername(username);
+      setId(data.id);
+    } else {
+      setAccountValidation(false);
+    }
+  }
+
+  /**
+   * Validates a Password
+   * @param {string} password - Password that user typed in 
+   */
+  const validatePassword = (password) => {
+    if (password &amp;&amp; password.match(validPassword)) {
+      setPassword(password);
+      setPasswordValidation(true);
+    } else {
+      setPasswordValidation(false);
+    }
+  };
+
+  /**
+   * Validates a username
+   * @param {string} username - Username that user typed in
+   */
+  const validateUsername = (username) => {
+    if (username &amp;&amp; username.match(validUsername)) {
+      setUsername(username);
+      setUsernameValidation(true);
+      setDupeValidation(null);
+      setAccountValidation(null);
+    } else {
+      setUsernameValidation(false);
+    }
+  };
+
+  return (
+    &lt;div className="form">
+      &lt;div className="headerDiv">
+        &lt;img src={Logo} width={"40px"} />
+        &lt;p className="header">chatconnect&lt;/p>
+      &lt;/div>
+      {form === "login" &amp;&amp; &lt;p className="slogan">Sign In&lt;/p>}
+      {form === "signup" &amp;&amp; &lt;p className="slogan">Sign Up&lt;/p>}
+      &lt;form>
+        {isValidUsername === false &amp;&amp; form === "signup" &amp;&amp; (
+          &lt;p className="invalid">
+            {form === "signup" &amp;&amp; (
+              &lt;span data-testid="cannot-be-empty-error">
+                Username cannot be empty.
+              &lt;/span>
+            )}
+          &lt;/p>
+        )}
+        {form === "login" &amp;&amp;
+          (isValidAccount === false || isValidUsername === false) &amp;&amp; (
+            &lt;p data-testid="invalid-data-error" className="invalid">
+              Incorrect username or password.
+            &lt;/p>
+          )}
+        {isDupeUsername === true &amp;&amp;
+          isValidUsername === true &amp;&amp;
+          form === "signup" &amp;&amp; (
+            &lt;p data-testid="already-exists-error" className="invalid">
+              Username already exists.
+            &lt;/p>
+          )}
+        &lt;input
+          data-testid="username-input"
+          type="name"
+          ref={usernameIn}
+          onChange={(ev) => validateUsername(ev.target.value)}
+          className="input"
+          placeholder="Username"
+        />
+        &lt;br />
+        {isValidPassword === false &amp;&amp; (
+          &lt;p data-testid="password-error" className="invalid">
+            Your password should have at least 8 characters.
+          &lt;/p>
+        )}
+        &lt;input
+          data-testid="password-input"
+          type="password"
+          ref={passwordIn}
+          onChange={(ev) => validatePassword(ev.target.value)}
+          className="pwd"
+          placeholder="Password"
+          onKeyDown={(ev) => {
+            if (ev.key === "Enter" &amp;&amp; isValidPassword) {
+              if (isValidUsername) {
+                submitHandler();
+              } else {
+                setUsernameValidation(false);
+              }
+            }
+          }}
+        />
+      &lt;/form>
+      &lt;div className="decision">
+        {form === "login" &amp;&amp; (
+          &lt;div>
+            &lt;p className="text">You haven't signed up yet?&lt;/p>
+            &lt;p
+              data-testid="create-account"
+              className="btn"
+              onClick={() => {
+                setForm("signup");
+                setAccountValidation(null);
+                setPasswordValidation(null);
+                setUsernameValidation(null);
+                setDupeValidation(null);
+                usernameIn.current.value = "";
+                passwordIn.current.value = "";
+              }}
+            >
+              Create an account
+            &lt;/p>
+          &lt;/div>
+        )}
+        {form === "signup" &amp;&amp; (
+          &lt;div>
+            &lt;p className="text">Already have an account?&lt;/p>
+            &lt;p
+              data-testid="login-now"
+              className="btn"
+              onClick={() => {
+                setForm("login");
+                setAccountValidation(null);
+                setPasswordValidation(null);
+                setUsernameValidation(null);
+                setDupeValidation(null);
+                usernameIn.current.value = "";
+                passwordIn.current.value = "";
+              }}
+            >
+              Login now
+            &lt;/p>
+          &lt;/div>
+        )}
+        &lt;div
+          className="btn2"
+          onClick={() => {
+            if (isValidPassword) {
+              if (isValidUsername) {
+                void submitHandler();
+              } else {
+                setUsernameValidation(false);
+              }
+            }
+          }}
+        >
+          &lt;p data-testid="submit-button" className="text2">
+            {form === "signup" ? "Sign Up" : "Log In"}
+          &lt;/p>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  );
+}
+
+export default SignuploginForm;
+</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <br class="clear" />
+
+    <footer>
+      Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on
+      Thu Sep 07 2023 18:27:20 GMT+0200 (Central European Summer Time) using the
+      Minami theme.
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

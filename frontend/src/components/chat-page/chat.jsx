@@ -11,6 +11,10 @@ import Logo from "../../assets/icons/logo.svg";
 import Menu from "../../assets/icons/menu.svg";
 import Close from "../../assets/icons/close.svg";
 
+/**
+ * The Page where the chatting happens
+ * @component
+ */
 function Chat() {
   const [webSocket, setWebSocket] = useState(null);
   const [onlinePeopleList, setOnlinePeopleList] = useState({});
@@ -25,6 +29,10 @@ function Chat() {
   const [mobile, setMobile] = useState();
   const [toggle, setToggle] = useState(false);
 
+  /**
+   * A Function which decides if the App shows
+   * in mobile view or normal browser view
+   */
   const handleResize = () => {
     if (window.innerWidth <= 600) {
       setMobile(true);
@@ -32,7 +40,9 @@ function Chat() {
       setMobile(false);
     }
   };
-
+  /**
+   * Connects the user to the websocket
+   */
   function connectToWebSocket() {
     const webSocket = new WebSocket("ws://localhost:4040");
     setWebSocket(webSocket);
@@ -43,7 +53,10 @@ function Chat() {
       }, 1000);
     });
   }
-
+  /**
+   * Shows the user which other users are online
+   * @param {Array<string>} peopleArray - online users
+   */
   function showOnlinePeople(peopleArray) {
     const people = {};
     peopleArray.forEach(({ userId, username }) => {
@@ -61,7 +74,11 @@ function Chat() {
     setOnlinePeopleList(extractedUserHimself);
     setOnlinePeople(extractedUserHimself);
   }
-
+  
+  /**
+   * Handles messages
+   * @param {string} event 
+   */
   function handleMessage(event) {
     const messageData = JSON.parse(event.data);
     if ("online" in messageData) {
@@ -72,6 +89,10 @@ function Chat() {
     }
   }
 
+  /**
+   * Sends messages typed in and submittet by the user
+   * @param {*} event 
+   */
   function sendMessage(event) {
     event.preventDefault();
     if (newMessage !== "") {
@@ -105,13 +126,20 @@ function Chat() {
     }
   }
 
+  /**
+   * Logs out the user
+   */
   function logout() {
     axios.post("/logout").then(() => {
       setId(null);
       setLoggedInUsername(null);
     });
   }
-
+  /**
+   * If a user searchs for an other user it filters the users
+   * by the keyword typed in by the user 
+   * 
+   */
   function filterbyKeyword() {
     const keywordValue = keyword.current.value;
 
@@ -134,11 +162,17 @@ function Chat() {
     }
   }
 
+  /**
+   * When the site loads the window it sets the Window size
+   */
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
   });
 
+  /**
+   * When new messages appear an the site is full it automaticly scrolls down
+   */
   useEffect(() => {
     const container = alwaysBottom.current;
     if (container) {
@@ -146,6 +180,9 @@ function Chat() {
     }
   }, [messages]);
 
+  /**
+   * Connects the user to the websocket when the chat page loads
+   */
   useEffect(() => {
     connectToWebSocket();
     if (selectedUserId) {

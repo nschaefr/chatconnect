@@ -3,7 +3,11 @@ import { UserContext } from "./components/utils/user-context";
 import ChatPage from "./pages/chat-page/chat-page";
 import SignuploginPage from "./pages/signuplogin-page/signuplogin-page";
 
-export default function Routes() {
+/**
+ * A Function which decides if the ChatPage or the Signuploginpage should be shown
+ * @component
+ */
+function Routes() {
   const { username } = useContext(UserContext);
 
   if (username) {
@@ -12,3 +16,5 @@ export default function Routes() {
 
   return <SignuploginPage />;
 }
+
+export default Routes;
