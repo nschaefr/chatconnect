@@ -1,6 +1,10 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import SignuploginForm from "../../../src/components/signuplogin-page/signuplogin-form";
+const axios = require("axios");
+
+jest.mock("axios");
+jest.mock("jsonwebtoken");
 
 describe("rendering error messages on loginform", () => {
   beforeEach(() => {
@@ -35,7 +39,11 @@ describe("rendering error messages on loginform", () => {
     expect(invalidDataError).toBeInTheDocument();
   });
 
-  it("invalid-data-error visible when data invalid because of invalid username", () => {
+  it("invalid-data-error visible when data invalid because of invalid username", async () => {
+    jest.spyOn(axios, "post").mockImplementation(() => {
+      return Promise.resolve({ data: { valid: false } });
+    });
+
     fireEvent.change(screen.getByTestId("username-input"), {
       target: { value: "invalid-name" },
     });
@@ -43,16 +51,35 @@ describe("rendering error messages on loginform", () => {
       target: { value: "testpassword" },
     });
     fireEvent.click(screen.getByTestId("submit-button"));
+
+    await waitFor(() => {
+      const invalidDataError = screen.getByTestId("invalid-data-error");
+      expect(invalidDataError).toBeInTheDocument();
+    });
   });
 
-  it("invalid-data-error visible when data invalid because of invalid password", () => {
+  it("invalid-data-error visible when data invalid because of invalid password", async () => {
+    jest.spyOn(axios, "post").mockImplementation(() => {
+      return Promise.resolve({ data: { valid: false } });
+    });
+
     fireEvent.change(screen.getByTestId("username-input"), {
       target: { value: "testuser" },
     });
     fireEvent.change(screen.getByTestId("password-input"), {
       target: { value: "invalid-password" },
     });
-    fireEvent.click(screen.getByTestId("submit-button"));
+
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.keyDown(passwordInput, {
+      key: "Enter",
+      code: "Enter",
+    });
+
+    await waitFor(() => {
+      const invalidDataError = screen.getByTestId("invalid-data-error");
+      expect(invalidDataError).toBeInTheDocument();
+    });
   });
 });
 
@@ -92,5 +119,29 @@ describe("rendering error messages on signupform", () => {
 
     const canNotBeEmptyError = screen.getByTestId("cannot-be-empty-error");
     expect(canNotBeEmptyError).toBeInTheDocument();
+  });
+
+  it("already-exists-error visible when username is already in use", async () => {
+    jest.spyOn(axios, "post").mockImplementation(() => {
+      return Promise.resolve({ data: { duplicate: true } });
+    });
+
+    fireEvent.change(screen.getByTestId("username-input"), {
+      target: { value: "testuser" },
+    });
+    fireEvent.change(screen.getByTestId("password-input"), {
+      target: { value: "valid-password" },
+    });
+
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.keyDown(passwordInput, {
+      key: "Enter",
+      code: "Enter",
+    });
+
+    await waitFor(() => {
+      const alreadyExistsError = screen.getByTestId("already-exists-error");
+      expect(alreadyExistsError).toBeInTheDocument();
+    });
   });
 });
