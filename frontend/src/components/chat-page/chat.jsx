@@ -74,10 +74,10 @@ function Chat() {
     setOnlinePeopleList(extractedUserHimself);
     setOnlinePeople(extractedUserHimself);
   }
-  
+
   /**
    * Handles messages
-   * @param {string} event 
+   * @param {string} event
    */
   function handleMessage(event) {
     const messageData = JSON.parse(event.data);
@@ -91,7 +91,7 @@ function Chat() {
 
   /**
    * Sends messages typed in and submittet by the user
-   * @param {*} event 
+   * @param {*} event
    */
   function sendMessage(event) {
     event.preventDefault();
@@ -137,8 +137,8 @@ function Chat() {
   }
   /**
    * If a user searchs for an other user it filters the users
-   * by the keyword typed in by the user 
-   * 
+   * by the keyword typed in by the user
+   *
    */
   function filterbyKeyword() {
     const keywordValue = keyword.current.value;

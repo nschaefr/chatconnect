@@ -10,7 +10,6 @@ import Logo from "../../assets/icons/logo.svg";
  * @component
  */
 function SignuploginForm() {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [form, setForm] = useState("login");
@@ -28,7 +27,7 @@ function SignuploginForm() {
    * Function to check if the password and username are valid
    * @async
    * @method
-   * 
+   *
    */
   async function submitHandler() {
     const url = form === "signup" ? "signup" : "login";
@@ -55,7 +54,7 @@ function SignuploginForm() {
 
   /**
    * Validates a Password
-   * @param {string} password - Password that user typed in 
+   * @param {string} password - Password that user typed in
    */
   const validatePassword = (password) => {
     if (password && password.match(validPassword)) {

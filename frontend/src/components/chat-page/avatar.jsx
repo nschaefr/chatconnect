@@ -1,16 +1,15 @@
 /**
- * A component for the avatar from the User 
- * @component 
+ * A component for the avatar from the User
+ * @component
  * @param {string} username - Username
  * @param {string} userId - User id
-*/
+ */
 
 function Avatar({ username, userId }) {
-  
   const colors = ["#339E92", "#66B6AD", "#99CFC9", "#008677"];
   /**
-   * 
-   * @param {string} str - userId to generate hash for color for user 
+   *
+   * @param {string} str - userId to generate hash for color for user
    * @returns {string} hash - hash to generate user color
    */
   function hashCode(str) {
@@ -22,9 +21,9 @@ function Avatar({ username, userId }) {
     return hash;
   }
   /**
-   * 
-   * @param {string} hash - hash to generate user color 
-   * @returns {array} colors - returns array with colors   
+   *
+   * @param {string} hash - hash to generate user color
+   * @returns {array} colors - returns array with colors
    */
   function getColorByHash(hash) {
     const colorIndex = Math.abs(hash) % colors.length;

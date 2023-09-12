@@ -5,7 +5,7 @@ import "./styles.css";
  * @component
  * @param {string} id - User id
  * @param {string} username - Username
- * @param {function} onClick - onClick function to set selected user id 
+ * @param {function} onClick - onClick function to set selected user id
  * @param {string} selected - Selected user
  * @param {string} screen - Mobile or browser view
  */

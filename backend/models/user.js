@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema(
     username: { type: String, unique: true },
     password: String,
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 module.exports = userModel = mongoose.model("User", userSchema);
