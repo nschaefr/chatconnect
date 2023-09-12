@@ -3,25 +3,127 @@
 *Entwickler:* Nils Schäfer, Tim Pitzing
 
 image::chatconnect.png[300, 300]
+
 ChatConnect ist eine Echtzeit-Chatanwendung, die Benutzern ermöglicht, Textnachrichten in Echtzeit auszutauschen. Unser Hauptziel bei diesem Projekt ist es, eine benutzerfreundliche und zuverlässige Plattform für die Online-Kommunikation bereitzustellen. ChatConnect zeichnet sich durch seine vollständige Responsive-Funktionalität aus. Das bedeutet, dass die Anwendung reibungslos auf verschiedenen Geräten und Bildschirmgrößen funktioniert. +
- +
+
 Folgende Funktionen werden abgedeckt:
 
-===== Registrierung und Login
+==== Registrierung und Login
 Benutzer haben die Möglichkeit, sich über ein intuitives Registrierungsformular anzumelden und sich mit ihren Anmeldeinformationen einzuloggen. Dies gewährleistet die Sicherheit und die Personalisierung der Chat-Erfahrung.
 
-===== Echtzeit-Kommunikation
+==== Echtzeit-Kommunikation
 ChatConnect ermöglicht Benutzern das Senden und Empfangen von Textnachrichten in Echtzeit. Dies ermöglicht reibungslose Konversationen zwischen Benutzern, unabhängig von ihrer geografischen Lage.
 
-===== Namensfilter
+==== Namensfilter
 Die Anwendung bietet die Möglichkeit, Benutzer nach Namen zu filtern. Dies erleichtert das Auffinden von Gesprächspartnern und früheren Unterhaltungen.
 
-===== Konsistente Datenbank-Speicherung
+==== Konsistente Datenbank-Speicherung
 Alle Daten, einschließlich Nachrichten, Chat-Verläufe und Benutzerinformationen, werden konsistent in einer Datenbank gespeichert. Dies gewährleistet die Integrität der Daten und ermöglicht eine einfache Verwaltung und Sicherung.
 
-=== Technologiestack
-- Frontend: Die Benutzeroberfläche wurde mit React erstellt.
-- Backend: Das Backend wurde mit der Programmiersprache Node.js und dem Framework Express.js entwickelt.
-- Datenbank: MongoDB wird zur sicheren und zuverlässigen Speicherung der Daten verwendet.
-- Echtzeit-Kommunikation: WebSocket-Technologie wird verwendet, um Echtzeit-Nachrichtenübertragung zu ermöglichen.
-- Sicherheit: Die Anwendung besitzt Sicherheitsmaßnahmen wie Verschlüsselung und Authentifizierung, um die Benutzerdaten zu schützen.
+== Technologiestack
+[%hardbreaks]
+* Frontend: Die Benutzeroberfläche wurde mit React erstellt. 
+* Backend: Das Backend wurde mit der Programmiersprache Node.js und dem Framework Express.js entwickelt.
+* Datenbank: MongoDB wird zur sicheren und zuverlässigen Speicherung der Daten verwendet.
+* Testing: Jest wird als Testframework genutzt.
+* Echtzeit-Kommunikation: WebSocket-Technologie wird verwendet, um Echtzeit-Nachrichtenübertragung zu ermöglichen.
+* Sicherheit: Die Anwendung besitzt Sicherheitsmaßnahmen wie Verschlüsselung und Authentifizierung, um die Benutzerdaten zu schützen.
+* Dokumentation: Für das Backend wurde Swagger, für das Frontend JSDOC genutzt.
+
+== Installation & Verwendung
+Um ChatConnect zu verwenden, stellen Sie sicher, dass Sie die folgenden Voraussetzungen erfüllen: +
+
+* Docker und Docker Compose
+* Node.js und npm
+
+==== Verwendung von Docker Compose
+Wechsle in das `root-directory` und führe folgenden Befehl aus:
+
+[source,shell]
+----
+docker-compose up -d
+----
+
+Wenn Sie die Images neu builden möchten, fügen sie die `--build` hinzu.
+
+[source,shell]
+----
+docker-compose up -d --build
+----
+
+==== Verwendung von Docker
+Sie können Backend-, sowie Frontendservice auch über das im jeweiligen Ordner liegende `Dockerfile` starten, wenn Sie das möchten.
+
+===== Backend
+Wechsle vom `root-directory` in das `backend-directory`und Erstelle ein Docker-Image für das Backend.
+
+[source,shell]
+----
+docker build -t chatconnect-backend .
+----
+
+Starte das Backend im Docker-Container.
+
+[source,shell]
+----
+docker run -d -p 4040:4040 chatconnect-backend
+----
+
+===== Frontend
+Wechsle vom `root-directory` in das `frontend-directory` und erstelle ein Docker-Image für das Backend.
+
+[source,shell]
+----
+docker build -t chatconnect-frontend .
+----
+
+Starte das Frontend im Docker-Container.
+
+[source,shell]
+----
+docker run -d -p 3000:3000 chatconnect-frontend
+----
+
+==== Verwendung von Node.js und npm
+===== Backend
+Wechsle vom `root-directory` in das `backend-directory` und führe folgenden Befehl aus:
+
+[source,shell]
+----
+nodemon index.js
+----
+
+===== Backend
+Wechsle vom `root-directory` in das `frontend-directory` und führe folgenden Befehl aus:
+
+[source,shell]
+----
+npm start
+----
+
+== Tests
+Vor dem Starten der Tests, sollte lokal ein `install` ausgeführt werden.
+
+[source,shell]
+----
+npm install
+----
+
+==== Starten von Tests
+Wechsle in das jeweilige `service-directory` und führe folgenden Befehl aus:
+
+[source,shell]
+----
+npm test
+----
+
+Füge `-- --coverage` hinzu und du erhältst eine Übersicht über die Testcoverage des Projekts. +
+Ebenso entsteht ein `coverage-directory` in dem du in `coverage\lcov-report` eine `index.html` findest, welche dir eine Browseransicht der Testcoverage ermöglicht. 
+
+== Dokumentation
+==== Backend
+Nachdem du das `Backend` gestartet hast, findest du die Dokumentation der API-Calls unter http://localhost:4040/api-docs/.
+
+==== Frontend
+
+Die Dokumentation der Frontend-Komponenten findest du im `docs-directory` im Frontend-Service. Nutze hier die `index.html` und ziehe diese in ein Browserfenster deiner Wahl.
