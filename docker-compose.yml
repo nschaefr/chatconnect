@@ -7,7 +7,6 @@ services:
       dockerfile: Dockerfile
     image: chatconnect-backend
     container_name: chatconnect-node-server
-    command: npm run start-docker
     volumes:
       - ./backend:/app/backend
       - /usr/src/app/node_modules
@@ -22,7 +21,6 @@ services:
       dockerfile: Dockerfile
     image: chatconnect-frontend
     container_name: chatconnect-react-frontend
-    command: npm start
     volumes:
       - ./frontend/src:/app/frontend/src
       - /usr/app/node_modules
