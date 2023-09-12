@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>components/chat-page/contact.jsx - Documentation</title>
+    <title>Routes - Documentation</title>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="../scripts/prettify/prettify.js"></script>
+    <script src="../scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -18,9 +18,9 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="styles/prettify-tomorrow.css"
+      href="../styles/prettify-tomorrow.css"
     />
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/jsdoc-default.css" />
   </head>
   <body>
     <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -31,7 +31,7 @@
     <label for="nav-trigger" class="overlay"></label>
 
     <nav>
-      <li class="nav-link nav-home-link"><a href="index.html">Home</a></li>
+      <li class="nav-link nav-home-link"><a href="../index.html">Home</a></li>
       <li class="nav-heading">Classes</li>
       <li class="nav-heading">
         <span class="nav-item-type type-class">C</span
@@ -134,62 +134,43 @@
     </nav>
 
     <div id="main">
-      <h1 class="page-title">components/chat-page/contact.jsx</h1>
+      <h1 class="page-title">Routes</h1>
 
       <section>
-        <article>
-          <pre
-            class="prettyprint source linenums"
-          ><code>import Avatar from "./avatar";
-import "./styles.css";
-/**
- * Component which shows the contact list
- * @component
- * @param {string} id - User id
- * @param {string} username - Username
- * @param {function} onClick - onClick function to set selected user id 
- * @param {string} selected - Selected user
- * @param {string} screen - Mobile or browser view
- */
-function Contact({ id, username, onClick, selected, screen }) {
-  return (
-    &lt;div
-      className="contactDiv"
-      key={id}
-      onClick={() => onClick(id)}
-      style={{
-        padding: `${screen === "mobile" ? "15px" : "10px 0px 10px 20px"}`,
-        display: "flex",
-        alignItems: "center",
-        color: "white",
-        gap: "10px",
-        marginLeft: `${screen === "mobile" ? "5px" : "15px"}`,
-        marginRight: `${screen === "mobile" ? "5px" : "15px"}`,
-        cursor: "pointer",
-        borderRadius: "3px",
-        backgroundColor: `${selected ? "#3c3c50" : "#28283c"}`,
-      }}
-    >
-      &lt;Avatar username={username} userId={id} />
-      {screen !== "mobile" &amp;&amp; (
-        &lt;div className="contactNameDiv">
-          &lt;span
-            style={{
-              fontSize: "15px",
-              fontFamily: "SemiBold",
-              opacity: `${selected ? "100%" : "50%"}`,
-            }}
-          >
-            {screen === "mobile" ? "" : username}
-          &lt;/span>
-        &lt;/div>
-      )}
-    &lt;/div>
-  );
-}
+        <header>
+          <h2>Routes</h2>
+        </header>
 
-export default Contact;
-</code></pre>
+        <article>
+          <div class="container-overview">
+            <div class="section-method">
+              <h4 class="name" id="Routes">
+                <span class="type-signature"></span>new Routes<span
+                  class="signature"
+                  >()</span
+                ><span class="type-signature"></span>
+              </h4>
+
+              <div class="description">
+                <p>
+                  A Function which decides if the ChatPage or the
+                  Signuploginpage should be shown
+                </p>
+              </div>
+
+              <dl class="details">
+                <dt class="tag-source">Source:</dt>
+                <dd class="tag-source">
+                  <ul class="dummy">
+                    <li>
+                      <a href="jsx/Routes.jsx.html">Routes.jsx</a>,
+                      <a href="jsx/Routes.jsx.html#line10">line 10</a>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </div>
+          </div>
         </article>
       </section>
     </div>
