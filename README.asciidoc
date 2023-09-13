@@ -88,18 +88,20 @@ docker run -d -p 3000:3000 chatconnect-frontend
 
 ==== Verwendung von Node.js und npm
 ===== Backend
-Wechsle vom `root-directory` in das `backend-directory` und führe folgenden Befehl aus:
+Wechsle vom `root-directory` in das `backend-directory` und führe folgende Befehle aus:
 
 [source,shell]
 ----
+npm install
 nodemon index.js
 ----
 
 ===== Backend
-Wechsle vom `root-directory` in das `frontend-directory` und führe folgenden Befehl aus:
+Wechsle vom `root-directory` in das `frontend-directory` und führe folgende Befehle aus:
 
 [source,shell]
 ----
+npm install
 npm start
 ----
 
