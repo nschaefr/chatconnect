@@ -36,6 +36,8 @@ Um ChatConnect zu verwenden, stellen Sie sicher, dass Sie die folgenden Vorausse
 * Docker und Docker Compose
 * Node.js und npm
 
+Wenn die Anwendung mit einem der folgenden Verfahren gestartet wurde, können Sie weitere Chatteilnahmer lokal simulieren, indem Sie ein privates Browserfenster und/oder einen anderen Browser starten.
+
 ==== Verwendung von Docker Compose
 Wechsle in das `root-directory` und führe folgenden Befehl aus:
 
