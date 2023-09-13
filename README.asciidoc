@@ -36,7 +36,8 @@ Um ChatConnect zu verwenden, stellen Sie sicher, dass Sie die folgenden Vorausse
 * Docker und Docker Compose
 * Node.js und npm
 
-Wenn die Anwendung mit einem der folgenden Verfahren gestartet wurde, können Sie weitere Chatteilnahmer lokal simulieren, indem Sie ein privates Browserfenster und/oder einen anderen Browser starten.
+Wenn die Anwendung mit einem der folgenden Verfahren gestartet wurde, können Sie das `Frontend` unter http://localhost:3030 und das `Backend` unter http://localhost:4040 abrufen.
+Um weitere Chatteilnahmer lokal zu simulieren, öffnen Sie ein privates Browserfenster und/oder starten Sie einen anderen Browser.
 
 ==== Verwendung von Docker Compose
 Wechsle in das `root-directory` und führe folgenden Befehl aus:
@@ -50,7 +51,7 @@ docker-compose up -d --build
 Sie können Backend-, sowie Frontendservice auch über das im jeweiligen Ordner liegende `Dockerfile` starten, wenn Sie das möchten.
 
 ===== Backend
-Wechsle vom `root-directory` in das `backend-directory`und Erstelle ein Docker-Image für das Backend.
+Wechsle vom `root-directory` in das `backend-directory` und Erstelle ein Docker-Image für das Backend.
 
 [source,shell]
 ----
