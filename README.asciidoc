@@ -43,13 +43,6 @@ Wechsle in das `root-directory` und führe folgenden Befehl aus:
 
 [source,shell]
 ----
-docker-compose up -d
-----
-
-Wenn Sie die Images neu builden möchten, fügen sie die `--build` hinzu.
-
-[source,shell]
-----
 docker-compose up -d --build
 ----
 
