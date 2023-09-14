@@ -86,6 +86,7 @@ Wechsle vom `root-directory` in das `backend-directory` und führe folgende Befe
 
 [source,shell]
 ----
+npm install nodemon -g
 npm install
 nodemon index.js
 ----
