@@ -101,18 +101,12 @@ npm start
 ----
 
 == Tests
-Vor dem Starten der Tests, sollte lokal ein `install` ausgeführt werden.
-
-[source,shell]
-----
-npm install
-----
-
 ==== Starten von Tests
 Wechsle in das jeweilige `service-directory` und führe folgenden Befehl aus:
 
 [source,shell]
 ----
+npm install
 npm test
 ----
 
