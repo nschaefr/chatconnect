@@ -102,7 +102,7 @@ npm start
 
 == Tests
 ==== Starten von Tests
-Wechsle in das jeweilige `service-directory` und führe folgenden Befehl aus:
+Wechsle in das jeweilige `service-directory` und führe folgende Befehle aus:
 
 [source,shell]
 ----
@@ -110,7 +110,7 @@ npm install
 npm test
 ----
 
-Füge `-- --coverage` hinzu und du erhältst eine Übersicht über die Testcoverage des Projekts. +
+Füge `-- --coverage` bei `npm test` hinzu und du erhältst eine Übersicht über die Testcoverage des Projekts. +
 Ebenso entsteht ein `coverage-directory` in dem du in `coverage\lcov-report` eine `index.html` findest, welche dir eine Browseransicht der Testcoverage ermöglicht. 
 
 == Dokumentation
