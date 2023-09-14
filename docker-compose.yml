@@ -7,9 +7,6 @@ services:
       dockerfile: Dockerfile
     image: chatconnect-backend
     container_name: chatconnect-node-server
-    volumes:
-      - ./backend:/app/backend
-      - /usr/src/app/node_modules
     ports:
       - "4040:4040"
     env_file: ./backend/.env
@@ -21,8 +18,5 @@ services:
       dockerfile: Dockerfile
     image: chatconnect-frontend
     container_name: chatconnect-react-frontend
-    volumes:
-      - ./frontend/src:/app/frontend/src
-      - /usr/app/node_modules
     ports:
       - "3000:3000"
