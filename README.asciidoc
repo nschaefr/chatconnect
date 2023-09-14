@@ -44,7 +44,7 @@ Wechsle in das `root-directory` und führe folgenden Befehl aus:
 
 [source,shell]
 ----
-docker-compose up -d --build
+docker-compose up -d
 ----
 
 ==== Verwendung von Docker
