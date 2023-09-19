@@ -1,6 +1,6 @@
 = ChatConnect
 
-*Entwickler:* Nils Schäfer, Tim Pitzing
+*Entwickler:* Nils Schäfer
 
 image::chatconnect.png[300, 300]
 
