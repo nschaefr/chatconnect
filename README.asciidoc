@@ -1,4 +1,4 @@
-= ChatConnect
+= ChatConnect (Uni-Projekt)
 
 *Entwickler:* Nils Schäfer
 
